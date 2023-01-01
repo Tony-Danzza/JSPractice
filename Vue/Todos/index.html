@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script defer src="app.js"></script>
+
+</head>
+<style>
+    #complete
+    {
+        opacity: .75;
+        background: slateblue;
+        text-transform: uppercase;
+        color: white;
+        
+    }
+    #incomplete
+    {
+        opacity: .75;
+        background: rgba(224, 25, 25, 0.762);
+    }
+</style>
+<body>
+    <div id="app">
+        <h1>TodoS</h1>
+        {{message}}
+        <div class="add-todo">
+            <label>Add Todo: </label>
+            <input type="text" v-model="newTodo.text" placeholder="Enter Todo text...">
+            <button v-on:click="addTodo">Submit</button>
+        </div>
+    
+        <div class="todos">
+            <div v-for="todo in todos">
+                <table>
+                    <tr>
+                        <th>Text</th>
+                        <th>|</th>
+                        <th>completed</th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                        <td>{{todo.text}}</td>
+                        <td>|</td>
+
+                        <td v-if="todo.completed == false" id="incomplete">{{todo.completed}}</td>
+                        <td id="complete" v-else style="background: blue;">COMPLETED</td>
+                        <td><button v-on:click="deleteTodo(todo)">Delete</button></td>
+                        <td><button v-if="todo.completed == false" v-on:click="toggleStatus(todo)">Completed</button></td>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>
