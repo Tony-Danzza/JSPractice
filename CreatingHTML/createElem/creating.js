@@ -42,3 +42,12 @@ for (let i = 0; i < dogs.length; i++){
     myList.appendChild(dogList)
     document.body.appendChild(myList)
 }
+
+const item = document.createElement('h1')
+
+item.textContent = `${dogs.forEach(dog => {
+    
+})}`
+
+
+document.body.appendChild(item)
