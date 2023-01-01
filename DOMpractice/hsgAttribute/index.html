@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToggleClass</title>
+    <title>Has|Set|Get Attribute</title>
 </head>
 <style>
     .round
@@ -13,10 +13,43 @@
     }
 </style>
 <body>
-    <img id="picture" src="https://i.picsum.photos/id/694/200/300.jpg?hmac=fAbYLUWtofDk7qWl4qOA_p9o2oSC3vylIK8clCV-ttk" alt="aisle">
+    <h1>Working With Getters and Setters</h1>
 
+    <img id="picture" src="https://i.picsum.photos/id/694/200/300.jpg?hmac=fAbYLUWtofDk7qWl4qOA_p9o2oSC3vylIK8clCV-ttk">
+    <img data-name="random-200" src="https://picsum.photos/200">
+    <img data-name="random-201" src="https://picsum.photos/201">
+    
+    <p data-value=''>0</p>
+    <button></button>
     <script>
-       
+        // use data- to attach misc meta data to and element. data-dog="Tito", data-name='Adam'
+        const pic = document.querySelector("#picture")
+
+        pic.setAttribute('alt', "train car aisle")
+
+        console.log(pic.hasAttribute('alt'))
+
+        const para = document.querySelector('p')
+
+        console.log(typeof(para.getAttribute('data-value')))
+
+        para.setAttribute('data-value', 1)
+
+        console.log(para.dataset)
+        
+        console.log(para.valueOf())
+        let btn = document.querySelector('button')
+
+        let increment = 0
+        btn.addEventListener('click', function(){
+            increment += 1    
+
+            para.innerHTML = increment
+            para.setAttribute('data-value', increment) 
+        })
+        pic.addEventListener('click', function(){
+            pic.classList.toggle('round')
+        })
     </script>
 </body>
 </html>
