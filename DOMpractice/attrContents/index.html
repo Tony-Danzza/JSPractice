@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter Done</title>
+
+</head>
+<body>
+    <p class="title">Hello World</p>
+
+    <h2>
+        I am a Heading
+        <span hidden>I am Hidden!</span>
+        <style>
+            h2
+            {
+                color:red;
+            }
+        </style>
+    </h2>
+
+    <article class="item">
+        <h2>Im an article</h2>
+        <p class="pizza">This is how many pizzas I ate! 🍕</p>
+        <p class="count"></p>
+    </article>
+
+    <script>
+        let title = document.querySelector(".title")
+        console.log(`Getter example title.textContent; ${title.textContent}`)
+
+        title.textContent = "Hello Turtle ISLAND"
+
+        console.log(`now updated with setter title.textContent = 'exp' ${title.textContent}`)
+
+        let heading = document.querySelector('h2')
+
+        console.log(`var.textContent returns everything in element: ${heading.textContent} `)
+        console.log(`var.innerText returns only the text in the element: "${heading.innerText}" innerText does not include hidden elements`)
+
+
+        console.log(`var.innerHTML will return everything + HTML elements ${heading.innerHTML}`)
+
+        const pizzaList = document.querySelector('.pizza')
+        pizzaList.textContent += '🍕🍕🍕'
+        pizzaList.innerHTML += `<button>🍕</button>`
+        pizzaList.insertAdjacentText('beforeend', '🍕')
+        console.log(pizzaList.textContent)
+
+        let button = document.querySelector('button')
+
+        let pizzaCount = document.querySelector('.count')
+        
+        console.log(pizzaCount)
+        pizzaCount.value = 0
+        button.addEventListener('click', function(){
+            pizzaCount.value += 1
+            pizzaCount.textContent = `How many slices did you eat ${pizzaCount.value}?`
+        })
+
+        let pizBtn 
+
+        // Nodes can be anything, but an actual element is something that is wrapped in a tag.
+        // It is a little bit confusing because everything is a node, and it only upgrades itself to an element if you have wrapped it in a tag.
+        
+    </script>
+</body>
+</html>
