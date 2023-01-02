@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <script defer src="./listener/events.js"></script>
+</head>
+<body>
+<div class="wrapper">    
+    <img src="https://picsum.photos/200" alt="random">
+</div>
+
+<button class="butts">Click Me!</button>
+
+<button class="cool">Click Me also</button>
+<hr>
+
+<!-- NOTE: shortcut to emmet 10 buttons with $=numerals -->
+<!-- button.buy{Buy Item $}*10 -->
+
+<button class="buy">Buy Item 1</button>
+<button class="buy">Buy Item 2</button>
+<button class="buy">Buy Item 3</button>
+<button class="buy">Buy Item 4</button>
+<button class="buy">Buy Item 5</button>
+<button class="buy">Buy Item 6</button>
+<button class="buy">Buy Item 7</button>
+<button class="buy">Buy Item 8</button>
+<button class="buy">Buy Item 9</button>
+<button class="buy">Buy Item 10</button>
+
+<!-- <script>
+    const buttonList = document.createElement('div')
+
+    buttonList.classList.add("buttons-list")
+
+    
+    for(let i = 1; i <= 10; i++){
+        // btnEl.textContent = `Buy Item ${i}`
+
+        buttonList.innerHTML += `<button class="buy">Buy Item ${i}</button>`
+    }
+    // const myFrag = document.createRange().createContextualFragment(buttonList)
+    // console.log(myFrag)
+    
+    // console.log(myFrag.querySelector('button'))
+    document.body.appendChild(buttonList)
+    
+    
+
+</script> -->
+</body>
+</html>
