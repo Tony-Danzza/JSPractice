@@ -51,6 +51,14 @@ console.log(buyBtns.forEach((buyBtn, i) => {
 }))
 
 
-function buyItem(num){
-    console.log(`Buying Item ${num}`)
+function buyItem(num) {
+    console.log("Buying item")
 }
+
+
+function handleBuyBtn(oprah) {
+    console.log('Binding the buy button');
+    oprah.addEventListener("click", buyItem)
+}
+
+buyBtns.forEach(handleBuyBtn)
