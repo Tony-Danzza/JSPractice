@@ -62,3 +62,15 @@ function handleBuyBtn(oprah) {
 }
 
 buyBtns.forEach(handleBuyBtn)
+
+
+// Working with the click event.
+buyBtns.forEach(function (buyBtn) {
+    buyBtn.addEventListener('click', handleBuyButtonClick)
+})
+
+
+function handleBuyButtonClick(event) {
+    console.log("You are buying it");
+    console.log(new PointerEvent(event))
+}
