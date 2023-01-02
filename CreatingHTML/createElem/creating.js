@@ -45,9 +45,6 @@ for (let i = 0; i < dogs.length; i++){
 
 const item = document.createElement('h1')
 
-item.textContent = `${dogs.forEach(dog => {
-    
-})}`
-
-
-document.body.appendChild(item)
+item.textContent = dogs.forEach(dog => {
+    console.log(dog)
+})
