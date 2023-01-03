@@ -70,7 +70,27 @@ buyBtns.forEach(function (buyBtn) {
 })
 
 
+
 function handleBuyButtonClick(event) {
+    event.stopPropagation();
+    
     console.log("You are buying it");
-    console.log(new PointerEvent(event))
+    console.log(new PointerEvent(event.type))
+    console.log(event.target.dataset);
+    console.log(typeof(event.target.dataset.price));
+    console.log(typeof(parseFloat(event.target.dataset.price)));
+    console.log((parseFloat(event.target.dataset.price)));
+    console.log((parseInt(event.target.dataset.price)));
+    console.log(((event.target.dataset.price)));
+    const button = event.target
+
+    console.log(button.textContent)
+    console.log(button);
+    console.log(event.currentTarget)
+    
 }
+
+
+window.addEventListener('dblclick', function (event) {
+    console.log(`You have ${event.type} on the ${event.currentTarget}`)
+})
