@@ -72,8 +72,8 @@ buyBtns.forEach(function (buyBtn) {
 
 
 function handleBuyButtonClick(event) {
-    event.stopPropagation();
     
+    // event.stopPropagation();
     console.log("You are buying it");
     console.log(new PointerEvent(event.type))
     console.log(event.target.dataset);
@@ -91,6 +91,28 @@ function handleBuyButtonClick(event) {
 }
 
 
-window.addEventListener('dblclick', function (event) {
-    console.log(`You have ${event.type} on the ${event.currentTarget}`)
+// window.addEventListener('dblclick', function (event) {
+//     event.stopPropagation()
+//     console.log(`You have ${event.type} on the ${event.currentTarget}`)
+// })
+
+window.addEventListener('dblclick', function (e) {
+    console.log("you clicked the window");
+    console.log(e.target)
+    console.log(e.type)
+    console.log(e.bubbles)
+    e.stopPropagation()
+},
+    {capture: true}
+)
+    
+
+const photoEl = document.querySelector('.photo')
+photoEl.addEventListener('mousemove', function (e) {
+    console.log(e.currentTarget)
+    console.count(e.currentTarget);
+    console.log(this);
 })
+
+// this and e.currentTarget are the same thing,
+// suggest not to use this in event listeners or callbacks always use e.target or e.currentTarget
