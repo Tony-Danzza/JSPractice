@@ -21,9 +21,30 @@ function handleCardClick(e) {
     modalOuter.classList.add('open')
 }
 
-// function closeModal() {
-//     modalOuter.classList.
-// }
+
+function closeModal() {
+    modalOuter.classList.remove('open')
+}
+modalOuter.addEventListener('click', function (event) {
+    // NOTE: can use a bang "!" variable to a boolean
+    const isOutside = !event.target.closest('.modal-inner')
+    if (isOutside) {
+        closeModal()
+    }
+    console.log(isOutside)
+    console.log(event, "EVENT");
+    console.log(event.target)
+    console.log(event.currentTarget)
+    console.log(this);
+})
+
+window.addEventListener('keydown', event => {
+    console.log(event)
+    console.log(event.key)
+    if (event.key === 'Escape') {
+        closeModal()
+    }
+})
 
 cardButtons.forEach(button => {
     button.addEventListener('click', handleCardClick)

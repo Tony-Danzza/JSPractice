@@ -58,7 +58,15 @@
         border-radius: 5px;
         min-height: 200px;
         background: white;
+        transform: translateY(-200%);
+        transition: transform 1s;
+
         }
+        .modal-outer.open .modal-inner{
+            transform: translateY(0);
+        }
+       
+        
     </style>
 </head>
 <body>
