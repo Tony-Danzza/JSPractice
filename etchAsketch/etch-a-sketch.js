@@ -16,6 +16,10 @@ const ctx = canvas.getContext("2d");
 
 const shakeButton = document.querySelector(".shake");
 
+let hue = 10;
+
+ctx.strokeStyle = `hsl(100, 100%, 50%)`;
+
 ctx.lineJoin = "round";
 ctx.lineCap = "round";
 // ctx.lineCap = "square";
@@ -62,6 +66,10 @@ window.addEventListener('keydown', handleKey)
 
 function draw({key}) {
     console.log(key);
+    
+    hue += 1
+
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
     ctx.beginPath()
     ctx.moveTo(x, y)
    
