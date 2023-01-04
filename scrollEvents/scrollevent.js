@@ -17,8 +17,8 @@ function scrollToAccept() {
         console.log(e.currentTarget)
         console.log(e.currentTarget.scrollTop)
         console.log(e.currentTarget.scrollHeight)
-        const leftOver = (e.currentTarget.scrollHeight - e.currentTarget.scrollTop) - 786
-        console.log(leftOver);
+        // const leftOver = (e.currentTarget.scrollHeight - e.currentTarget.scrollTop)
+        // console.log(leftOver);
     })
 }
 
