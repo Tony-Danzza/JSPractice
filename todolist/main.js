@@ -2,6 +2,13 @@ const incompleteList = document.querySelector('.incomplete-todos')
 
 const completeList = document.querySelector('.complete-todos')
 
+const newTodo = document.querySelector('#todo-text')
+const todoBtn = document.querySelector('button')
+
+const form = document.querySelector('form')
+
+
+
 
 
 const todos = [
@@ -20,5 +27,3 @@ todos.forEach((todo, i) => {
     
    
 });
-todoEl = document.querySelectorAll()
-// localStorage.setItem("todo", "todotest1")
