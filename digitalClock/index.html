@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digiclock</title>
+</head>
+<body>
+    <span class="clock"></span>
+    <script>
+        const clock = document.querySelector('.clock')
+        console.log(window)
+        // clock.addEventListener('onLoad', JSClock())
+        
+        function JSClock() {
+            const time = new Date();
+            const hour = time.getHours();
+            const minute = time.getMinutes();
+            const second = time.getSeconds();
+            let temp = String(hour % 12);
+            if (temp === "0") {
+                temp = "12";
+            }
+            temp += (minute < 10 ? ":0" : ":") + minute;
+            temp += (second < 10 ? ":0" : ":") + second;
+            temp += hour >= 12 ? " P.M." : " A.M.";
+            clock.innerHTML = `${temp}`
+            displayClock()
+            return temp;
+        }
+        // function JSClock()
+        // JSClock()
+        function displayClock(){
+            const refresh=1000;
+            mytime = setTimeout('JSClock()', refresh)
+        }
+        displayClock()
+
+        // window.addEventListener('load', JSClock())
+
+    </script>
+</body>
+</html>
