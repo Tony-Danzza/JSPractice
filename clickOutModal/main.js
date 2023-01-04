@@ -16,7 +16,7 @@ function handleCardClick(e) {
     // console.log(desc);
     // console.log("Yay! clicked it!")
     modalInner.innerHTML =
-    `<img src="${imgSrc.replace('200', '600')}" alt="${name}">
+    `<img width='600' height='600' src="${imgSrc.replace('200', '600')}" alt="${name}">
     <p>${desc}</p>`
     modalOuter.classList.add('open')
 }
