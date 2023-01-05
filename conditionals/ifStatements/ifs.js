@@ -100,7 +100,7 @@ function nameIsMad(person) {
 }
 
 if (nameIsMad('Adam')) {
-    console.log('Mad ccool fool')
+    console.log('Mad cool fool')
 }
 
 
