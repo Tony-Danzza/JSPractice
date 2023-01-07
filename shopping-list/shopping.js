@@ -53,11 +53,35 @@ function displayItems() {
         <span class="item-name">${item.name}</span>
         <button>&times;</button>
         </li>`).join('')
-    console.log(html);
+    // console.log(html);
     list.innerHTML = html
     // list.dispatchEvent(new CustomEvent('Custom Event Dispatched!'))
     // list.dispatchEvent(new CustomEvent('itemsUpdated'))
 
 }
 
+// list.addEventListener('itemsUpdated', (e) => {
+//     console.log(e);
+// })
 list.addEventListener('itemsUpdated', displayItems)
+
+function mirrorToLocalStorage() {
+    localStorage.setItem(items, JSON.stringify(items))
+    console.log("Saving items to local storage")
+
+}
+list.addEventListener('itemsUpdated', mirrorToLocalStorage)
+
+
+function restoreFromLocalStorage() {
+    console.log("Restoring local storage")
+    const lsItems = JSON.parse(localStorage.getItem('items'))
+    console.log(lsItems);
+
+    if (lsItems.length) {
+        lsItems.forEach(item=> items.push(item))
+        list.dispatchEvent(new CustomEvent('itemsUpdated'))
+    }
+}
+
+list.addEventListener('itemsUpdated', restoreFromLocalStorage)
