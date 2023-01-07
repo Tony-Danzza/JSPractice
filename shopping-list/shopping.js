@@ -2,7 +2,8 @@ const shoppingForm = document.querySelector('.shopping')
 
 const list = document.querySelector('.list')
 
-const items = []
+let items = []
+
 
 // function handleSubmit(e) {
 //     e.preventDefault()
@@ -49,9 +50,13 @@ function displayItems() {
     console.log(items)
     const html = items.map((item) =>
         `<li class="shopping-item">
-        <input type="checkbox">
+        <input type="checkbox" value="${item.id}" ${item.complete ? "checked" : ""}>
         <span class="item-name">${item.name}</span>
-        <button>&times;</button>
+        <button
+        aria-label="Remove ${item.name}"
+        value="${item.id}"
+        >
+        &times;</button>
         </li>`).join('')
     // console.log(html);
     list.innerHTML = html
@@ -66,7 +71,7 @@ function displayItems() {
 list.addEventListener('itemsUpdated', displayItems)
 
 function mirrorToLocalStorage() {
-    localStorage.setItem(items, JSON.stringify(items))
+    localStorage.setItem("items", JSON.stringify(items))
     console.log("Saving items to local storage")
 
 }
@@ -75,13 +80,48 @@ list.addEventListener('itemsUpdated', mirrorToLocalStorage)
 
 function restoreFromLocalStorage() {
     console.log("Restoring local storage")
-    const lsItems = JSON.parse(localStorage.getItem('items'))
+    const lsItems = JSON.parse(localStorage.getItem("items"))
+    // console.log(localStorage.getItem(JSON.parse(items)))
     console.log(lsItems);
 
     if (lsItems.length) {
-        lsItems.forEach(item=> items.push(item))
+        // lsItems = items
+        //     lsItems.forEach(item=> items.push(item))
+        items.push(...lsItems)
         list.dispatchEvent(new CustomEvent('itemsUpdated'))
     }
 }
+restoreFromLocalStorage()
+// const buttons = document.querySelectorAll('button')
+// console.log(buttons);
+function deleteItem( id ) {
+    console.log("Deleting Item", id);
+    items = items.filter((item) => item.id !== id);
+    
+    list.dispatchEvent(new CustomEvent('itemsUpdated'))
+    // localStorage.removeItem("item")
 
-list.addEventListener('itemsUpdated', restoreFromLocalStorage)
+}
+
+
+function markAsComplete(id) {
+    console.log("Mark as complete", id)
+    const itemRef = items.find((item) => item.id === id)
+    itemRef.complete = !itemRef.complete
+    console.log(itemRef);
+    list.dispatchEvent(new CustomEvent('itemsUpdated'))
+
+}
+
+list.addEventListener('click', function (e) {
+    // console.log(e.target, e.currentTarget)
+    const id = parseInt(e.target.value)
+    if (e.target.matches('button')) {
+        deleteItem(id)
+        console.log(typeof e.target.value);
+    }
+    if (e.target.matches('input[type="checkbox"]')) {
+        markAsComplete(id)
+    }
+})
+
