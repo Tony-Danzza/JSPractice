@@ -28,7 +28,6 @@ function Gallery(gallery) {
         
     }
 
-
     function closeModal() {
         modal.classList.remove('open')
         window.removeEventListener('keyup', handleKeyUp)
@@ -44,13 +43,10 @@ function Gallery(gallery) {
     }
 
     function handleKeyUp(event) {
-        if (event.key === 'Escape') closeModal();
-        // if (event.key === "ArrowRight") showNextImage(); 
-        if (event.key === "ArrowLeft") showPrevImage();
-        if (event.key === "ArrowRight") {
-            event.preventDefault();
-            showNextImage()
-        }
+        // NOTE: Adding 'return' will stop script from continuing upon calling following function
+        if (event.key === "Escape") return closeModal();
+        if (event.key === "ArrowRight") return showNextImage(); 
+        if (event.key === "ArrowLeft") return showPrevImage();
         
     }
 
@@ -84,6 +80,11 @@ function Gallery(gallery) {
     
     // There are out EventListeners
     images.forEach(image => image.addEventListener('click', (e) => showImage(e.currentTarget)));
+    images.forEach(image => image.addEventListener('keyup', (e) => {
+        if (e.key === "Enter") {
+            return showImage(e.currentTarget)
+        }
+    }))
     modal.addEventListener('click', handleClickOutside)
    
 }

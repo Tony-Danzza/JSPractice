@@ -11,7 +11,7 @@
     justify-content: space-around;
     /* grid-gap: 20px; */
     /* align-items: inherit; */
-    background: white;
+    background: rgba(38, 115, 223, 0.733);
     /* padding: 2rem; */
     }
 
@@ -24,7 +24,7 @@
 
   .mymodal {
     position: fixed;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(36, 103, 197, 0.733);
     z-index: 2;
     top: 0;
     right: 0;
@@ -40,12 +40,12 @@
 
   .modalInner {
     border-radius: 4px;
-    background: white;
+    background: rgba(94, 101, 103, 0.994);
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
     transform: translateY(-100vh);
     transition: all 0.5s;
     max-width: 1000px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 200px);
     display: grid;
     grid-template-columns: 50px 1fr 50px;
     color: black;
@@ -54,6 +54,7 @@
 
   .mymodal figure {
     height: 100%;
+    background: rgba(28, 119, 199, 0.827);
     display: grid;
     margin: 0;
     grid-template-rows: 1fr auto;
