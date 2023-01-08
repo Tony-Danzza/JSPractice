@@ -80,6 +80,7 @@ function Gallery(gallery) {
     
     // There are out EventListeners
     images.forEach(image => image.addEventListener('click', (e) => showImage(e.currentTarget)));
+    
     images.forEach(image => image.addEventListener('keyup', (e) => {
         if (e.key === "Enter") {
             return showImage(e.currentTarget)
