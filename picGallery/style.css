@@ -5,23 +5,24 @@
   grid-gap: 2rem;
 }
 .gallery {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 20px;
-    align-items: stretch;
+    display: flex;
+    /* width: 100%; */
+    /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+    justify-content: space-around;
+    /* grid-gap: 20px; */
+    /* align-items: inherit; */
     background: white;
-    padding: 2rem;
+    /* padding: 2rem; */
     }
 
     .gallery img {
-      width: 100%;
+      width: 200px;
       object-fit: cover;
       border:1px solid black;
     }
 
 
-.modal {
+  .mymodal {
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
     z-index: 2;
@@ -51,32 +52,32 @@
     margin: 3rem;
   }
 
-  .modal figure {
+  .mymodal figure {
     height: 100%;
     display: grid;
     margin: 0;
     grid-template-rows: 1fr auto;
   }
 
-  .modal img {
+  .mymodal img {
     height: 100%;
     width: 100%;
     object-fit: contain;
   }
 
-  .modal.open {
+  .mymodal.open {
     opacity: 1;
     pointer-events: all;
   }
 
-  .modal figcaption {
+  .mymodal figcaption {
     padding: 10px;
   }
 
-  .modal h2 {
+  .mymodal h2 {
     color: black;
   }
 
-  .modal.open .modalInner {
+  .mymodal.open .modalInner {
     transform: translateY(0);
   }

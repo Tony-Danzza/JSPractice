@@ -6,7 +6,7 @@ function Gallery(gallery) {
     const images = Array.from(gallery.querySelectorAll('img'))
     // console.log(images)
     // images.forEach((image)=> console.log(image))
-    const modal = document.querySelector('.modal')
+    const modal = document.querySelector('.mymodal')
     const prevBtn = modal.querySelector('.prev')
     const nextBtn = modal.querySelector('.next')
     let currentImg
@@ -45,6 +45,12 @@ function Gallery(gallery) {
 
     function handleKeyUp(event) {
         if (event.key === 'Escape') closeModal();
+        // if (event.key === "ArrowRight") showNextImage(); 
+        if (event.key === "ArrowLeft") showPrevImage();
+        if (event.key === "ArrowRight") {
+            event.preventDefault();
+            showNextImage()
+        }
         
     }
 
