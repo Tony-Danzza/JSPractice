@@ -39,6 +39,7 @@ function Slider(slider) {
         current.classList.remove(...classesToRemove)
         nextEl.classList.remove(...classesToRemove)
         if (direction === 'back') {
+            // [prevEl, current, nextEl] = [prevEl.previousElementSibling, prevEl, current || slides.lastElementChild]
             prevEl = prevEl.previousElementSibling || slides.lastElementChild
             current = current.previousElementSibling || slides.lastElementChild
             nextEl = nextEl.previousElementSibling || slides.lastElementChild
@@ -47,27 +48,27 @@ function Slider(slider) {
             // prevEl.classList.add('prev')
             // current.classList.add('current')
             // nextEl.classList.add('next')
-        } 
-        if (direction === "forward") {
-            prevEl = prevEl.nextElementSibling || slides.firstElementChild
-            current = current.nextElementSibling || slides.firstElementChild
-            nextEl = nextEl.nextElementSibling || slides.firstElementChild
-            
+        } else {
+            [prevEl, current, nextEl] = [current, nextEl, nextEl.nextElementSibling || slides.firstElementChild]
+                // prevEl = prevEl.nextElementSibling || slides.firstElementChild
+                // current = current.nextElementSibling || slides.firstElementChild
+                // nextEl = nextEl.nextElementSibling || slides.firstElementChild
         }
-        prevEl.classList.add('prev')
-        current.classList.add('current')
-        nextEl.classList.add('next')
+            
+        applyClasses() 
+        // prevEl.classList.add('prev')
+        // current.classList.add('current')
+        // nextEl.classList.add('next')
     }
     // Functions to run upon calling Slider()
     startSlider()
     applyClasses()
     // move("back")
-    prevBtn.addEventListener('click', function () {
-        move('back')
-    })
-    nextBtn.addEventListener('click', function () {
-        move("forward")
-    })
+    prevBtn.addEventListener('click', () => move('back'))
+    // nextBtn.addEventListener('click', function () {
+        // move("forward")
+    // })
+    nextBtn.addEventListener('click', () => move('forward'))
 }
 // const test = 
 const mainSlider = Slider(document.querySelector('.main-slider'))
