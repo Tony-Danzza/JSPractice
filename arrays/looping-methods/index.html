@@ -20,6 +20,8 @@
   <ul>
     <li>.forEach()</li>
     <li>.map()</li>
+    <li>filter and find</li>
+    
 
   </ul>
   <script>
@@ -194,14 +196,14 @@
 
       const cleanPeople = people.map(function(person){
         // console.log(person.names ? person.names : "Empty name value")
-        console.log(person)
+        // console.log(person)
         // NOTE: need to define new with Date function, will convert the person.birthday string into a true js representation of the given date.
         // and with that all the method you can use on JS date objs. cool!
         const birthday = new Date(person.birthday).getFullYear()
         const now = new Date().getFullYear()
-        console.log(now)
+        // console.log(now)
         let age = now - birthday
-        console.log(age)
+        // console.log(age)
         // const currentYear = new Date().getFullYear()
 
 
@@ -215,9 +217,42 @@
           
        
       })
-      console.log(cleanPeople)
+      // console.log(cleanPeople)
 
-      
+      // const over40 = cleanPeople.filter(function(person){
+      //   return person.age > 40
+      //   // if(person.age > 40){
+      //   //   return true
+      //   //   // console.log(person)
+      //   // } return false
+        // })  
+
+      // "Implicit Return"!
+      const over40 = cleanPeople.filter((person) => person.age > 40)
+      console.table(over40)
+
+      // NOTE: .find work the same way but will return only one value. also find return object filter returns and array of objects
+      const myFind = students.find(student => student.id === "565a")
+      console.log(myFind)
+
+      // NOTE: using 'higher order function'
+
+    //   function findById(id) {
+    //     return function isStudent(student) {
+    //       return student.id === id
+    //     }
+    //   }
+    //  const student = students.find(findById('565a'))
+    //  console.log(student)
+
+     function findByProp(prop, propWeAreLookingFor) {
+      return function isStudent(student) {
+        return student[prop] === propWeAreLookingFor
+      }
+     }
+
+     const student = students.find(findByProp('id', '565a'))
+     console.log(student)
       // console.log(...people)
 
 
