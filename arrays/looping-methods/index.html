@@ -19,6 +19,8 @@
   <h1>Array Looping Methods</h1>
   <ul>
     <li>.forEach()</li>
+    <li>.map()</li>
+
   </ul>
   <script>
     const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
@@ -174,20 +176,51 @@
     // // const fullNames = ['wes', 'kait', 'poppy'].map(name => `${name} bos`)
     // console.log(fullNames)
 
+
+    // const orderTotalWithTax = orderTotals.map(total => total = 1)
+    // console.log(orderTotalWithTax)
+
     // const orderTotalWithTax= orderTotals.map(total => total * 1.13)
     // console.log(orderTotalWithTax)
 
     // const testArray = Array(3).fill('x') = ['x', 'x', 'x']
 
+    //  working with array of objects
 
-    // NOTE: woring with array of objects
-
+    // NOTE: MAP vs. forEach
+    // It is fine to log within a map function, 
+    // just don't ever do things like updating the DOM inside of a map function. 
+    // That is what a forEach is for.
 
       const cleanPeople = people.map(function(person){
+        // console.log(person.names ? person.names : "Empty name value")
         console.log(person)
+        // NOTE: need to define new with Date function, will convert the person.birthday string into a true js representation of the given date.
+        // and with that all the method you can use on JS date objs. cool!
+        const birthday = new Date(person.birthday).getFullYear()
+        const now = new Date().getFullYear()
+        console.log(now)
+        let age = now - birthday
+        console.log(age)
+        // const currentYear = new Date().getFullYear()
+
+
+
+        // console.log(fullName.first, fullName.last)
+        // console.log(age)
+        return {
+          age,
+          fullName: `${person.names.first} ${person.names.last}`
+        }
+          
+       
       })
+      console.log(cleanPeople)
 
       
+      // console.log(...people)
+
+
   </script>
 </body>
 
