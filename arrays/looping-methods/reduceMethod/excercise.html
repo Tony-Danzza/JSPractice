@@ -29,7 +29,8 @@
     // console.log(myArray)
 
     function isValid(char) {
-        return char.match(/[a-z0-9]/i)
+        
+        return char.match(/[a-z0-9]/i) // NOTE: the 'i' at the end is to indicate both upper and lowercase
     }
 
     
@@ -37,9 +38,13 @@
     // console.log(netArray)
 
 
-    const validChar = text.split('').filter(isValid)
+    const validChar = text
+        .split('')  //split each char into an item of an array
+        .filter(isValid) // run each char through isValid func, using regex match to see if it is a letter or number. return only valid chars
 
     console.log(validChar)
+
+
     // const result = myArray.filter(char =>{
     //     if(char.match(/[a-z]/i)){
 
@@ -49,7 +54,6 @@
     // })
     // console.log(result)
     // console.log(myArray)
-
 
     
 
