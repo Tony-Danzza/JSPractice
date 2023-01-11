@@ -47,7 +47,7 @@
                         <td>{{todo.text}}</td>
                         <td>|</td>
 
-                        <td v-if="todo.completed == false" id="incomplete">{{todo.completed}}</td>
+                        <td v-if="todo.completed == false" id="incomplete" :click=toggleClass(todo)>{{todo.completed}}</td>
                         <td id="complete" v-else style="background: blue;">COMPLETED</td>
                         <td><button v-on:click="deleteTodo(todo)">Delete</button></td>
                         <td><button v-if="todo.completed == false" v-on:click="toggleStatus(todo)">Completed</button></td>

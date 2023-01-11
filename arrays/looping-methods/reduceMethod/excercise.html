@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    const text = `
+    Working with reduce Method
+
+        [🐮,🥔, 🐔, 🌽].map(cook) => [🍔, 🍟, 🍗, 🍿]
+    
+        [🐮,🍔, 🍟, 🌽].filter(isVegitartian) => [🍟, 🌽]
+    
+        [🍟, 🌽, 🍔, 🍗].reduce(eat) => 💩
+    
+    .reduce() is a compiler that will typically leave you with a smaller outcome
+
+    How to filter letters in array JavaScript?
+    To filter the elements from an array we call array. filter() and pass the callback function that is invoked for every element in the array.
+    `
+    
+    const myArray = text.split('')
+
+
+    function isValid(char) {
+        return char.match(/[a-z]/i)
+    }
+
+
+    const validChar = myArray.filter(isValid)
+
+    console.log(validChar)
+    // const result = myArray.filter(char =>{
+    //     if(char.match(/[a-z]/i)){
+
+    //         // console.log(char)
+    //         return char
+    //     }
+    // })
+    // console.log(result)
+    // console.log(myArray)
+
+
+    
+
+    </script>
+</body>
+</html>

@@ -40,7 +40,11 @@ createApp({
         toggleStatus: function (todo) {
             todo.completed = !this.todos.completed
             
-        }
+        },
+
+        // toggleClass: function (todo) {
+        //     todo.classList.add('active')
+        // }
 
 
 
