@@ -14,7 +14,7 @@
 
         [🐮,🥔, 🐔, 🌽].map(cook) => [🍔, 🍟, 🍗, 🍿]
     
-        [🐮,🍔, 🍟, 🌽].filter(isVegitartian) => [🍟, 🌽]
+        [🐮,🍔, 🍟, 🌽].filter(isVegetarian) => [🍟, 🌽]
     
         [🍟, 🌽, 🍔, 🍗].reduce(eat) => 💩
     
@@ -24,15 +24,20 @@
     To filter the elements from an array we call array. filter() and pass the callback function that is invoked for every element in the array.
     `
     
-    const myArray = text.split('')
-
+    // Can chain this on to validChar var
+    // let myArray = text.split('')
+    // console.log(myArray)
 
     function isValid(char) {
-        return char.match(/[a-z]/i)
+        return char.match(/[a-z0-9]/i)
     }
 
+    
+    // const netArray = myArray.filter(isValid)
+    // console.log(netArray)
 
-    const validChar = myArray.filter(isValid)
+
+    const validChar = text.split('').filter(isValid)
 
     console.log(validChar)
     // const result = myArray.filter(char =>{
