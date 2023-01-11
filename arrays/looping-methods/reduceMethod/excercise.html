@@ -28,21 +28,44 @@
     // let myArray = text.split('')
     // console.log(myArray)
 
-    function isValid(char) {
+    function isValidChar(char) {
         
         return char.match(/[a-z0-9]/i) // NOTE: the 'i' at the end is to indicate both upper and lowercase
     }
 
-    
-    // const netArray = myArray.filter(isValid)
+    // const netArray = myArray.filter(isValidChar)
     // console.log(netArray)
+
+    function lowercase(char) {
+        return char.toLowerCase()
+    }
+    // const lowercase = char => char.toLowerCase()
+
+
+    function instanceCounter(count, char) {
+        count[char] //if count of char exists 
+        ? count[char] += 1 // add one to the count
+        : count[char] = 1 // otherwise count = 1
+        
+        return count
+    }
 
 
     const validChar = text
         .split('')  //split each char into an item of an array
-        .filter(isValid) // run each char through isValid func, using regex match to see if it is a letter or number. return only valid chars
+        .filter(isValidChar) // run each char through isValidChar func, using regex match to see if it is a letter or number. return only valid chars
+        .map(lowercase)
+        .reduce(instanceCounter, {})
 
+
+    // const totalChars = validChar.reduce((acc, item) => acc + item.count, 0)
+    // console.log(totalChars)
     console.log(validChar)
+
+
+
+
+
 
 
     // const result = myArray.filter(char =>{
