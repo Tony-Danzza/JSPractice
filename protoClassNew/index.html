@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New, This, Prototypes and Classes</title>
+    <script defer src="./main.js"></script>
+    <link rel="stylesheet" href="../base.css">
+</head>
+<body>
+    <blockquote>"Everything in JS is an object"</blockquote>
+    
+    <ul>
+        <li>Use of 'new' keyword in front of certain built in functions (Array, Object, Date, Number...)</li>
+        <li>Will return an object that inherits built in JS prototype methods </li>
+        <li>called an <strong>instance object</strong></li>
+    </ul>
+
+    <script>
+        const today = new Date()
+        console.log(today)
+        console.log(today.getFullYear())
+        console.log(today.getTimezoneOffset())
+        
+
+        // use of [] or {} is referred to as LITERAL SYNTAX
+    
+        // vs
+
+
+        const names = new Array('adam', 'finn')
+
+        const names2 = ['adam', 'finn']
+
+
+        const span = document.createElement('span')
+
+        console.log(span)
+
+        console.log(span.constructor)
+
+        function Pizza() {
+            console.log("I am a PIZZA")
+        }
+
+        // pepperoniPizza is now a instance object of Pizza
+        const pepperoniPizza = new Pizza()
+
+        console.log(pepperoniPizza)
+        console.log(pepperoniPizza.constructor)
+        console.log(pepperoniPizza instanceof Pizza)
+
+    </script>
+</body>
+</html>
