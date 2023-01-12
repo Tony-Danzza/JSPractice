@@ -60,6 +60,15 @@
 
     // const totalChars = validChar.reduce((acc, item) => acc + item.count, 0)
     // console.log(totalChars)
+
+    function sortedByValue(a, b) {
+        return b[1] - a[1]
+    }
+    const sortedChar = Object
+        .entries(validChar)
+        .sort(sortedByValue)
+    console.log(sortedChar)
+
     console.log(validChar)
 
 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>For Loops</title>
+</head>
+
+<body>
+  <script>
+    const numbers = [2, 34, 3, 23, 42, 3, 1, 65, 364, 5, 645, 6];
+
+    const name = 'Wes Bos 👪🎅👨‍👦‍👦';
+
+    const baseHuman = {
+      feet: 2,
+      hands: 2,
+      arms: 2,
+      legs: 2,
+      eyes: 2,
+    }
+
+    const adam = {
+      name: "adam",
+      age: 99,
+      bloodType: 'AB',
+      sign: "Sagittarius"
+
+    }
+
+    function Human(name) {
+      this.name = name
+    }
+
+    adam.prototype = baseHuman
+
+    const adam2 = new Human('adam')
+
+
+
+
+    // For
+    // for loops are great for applying a specific increment.
+    // as well as a specific start...
+    // for(setup; condition; increment)
+
+      for(let i = 0; i <= 10; i+=2){
+        // let i will be scoped to this loop
+        console.log(i)
+      }
+
+      for(let i=0; i <= numbers.length; i++){
+        console.log(numbers[i])
+      }
+
+    // For of
+    // user for looping over iterable 
+      // will work with symbols
+      // also works with promises i.e. await
+
+      
+    for(const letter of name){
+      console.log(letter)
+    }
+
+    for(const num of numbers){
+      console.log(num)
+    }
+
+    // For in
+    // for in -- used for looping over keys of an object
+    // will include prototype properties as well 
+
+    for(const k in numbers){
+      console.log("index: ",k, numbers)
+    }
+
+    for(const prop in adam){
+      console.log(prop)
+    }    
+    console.table(adam.prototype)
+
+    // While Loop
+
+    let cool = true;
+    let i = 0;
+    while(cool === true){
+      console.log("Cool ash fool", i)
+      i+= 5
+      if(i > 100){
+        cool = false
+      }
+    }
+
+    // do while loop
+    // the do will run first and then check the while. 
+    do {
+
+    }while()
+
+  </script>
+</body>
+
+</html>
