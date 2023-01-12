@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objects</title>
-</head>
-<body>
-    <input type="text" name="first">
-    
-    <script>
-       
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Objects</title>
+	</head>
+	<body>
+		<input type="text" name="first" />
 
-        // const person = {
-        //     name: "wes",
-        //     age: 100
-        // }
+		<script>
+			// const person = {
+			//     name: "wes",
+			//     age: 100
+			// }
 
-        const age = 100
-        const person = {
-            name: "adam",
-            age,
-            "cool-dude": true,
-            clothing: {
-                shirt: true,
-                pants: false,
-            }
-        }
-        const adam = {
-            name: "adam",
-            age,
-            "cool-dude": true,
-            clothing: {
-                shirt: true,
-                pants: false,
-            }
-        }
-        person.job = "web dev"
-        person.age = 15
-        console.log(person)
-        console.log(person.clothing)
+			const age = 100;
+			const person = {
+				name: 'adam',
+				age,
+				777: true,
+				'cool-dude': true,
+				clothing: {
+					shirt: true,
+					pants: false,
+				},
+			};
+			const adam = {
+				name: 'adam',
+				age,
+				'cool-dude': true,
+				clothing: {
+					shirt: true,
+					pants: false,
+				},
+			};
+			person.job = 'web dev';
+			person.age = 15;
+			console.log(person);
+			console.log(person.clothing);
 
-        console.log(adam)
+			console.log(adam);
 
-        const nameInput = document.querySelector('[name="first"]')
-        
-        const name = nameInput.value
-        name = nameInput? nameInput.value : ""
-        console.log(name)
-        const adamFroze = Object.freeze(adam)
+			const nameInput = document.querySelector('[name="first"]');
 
-    </script>
-</body>
+			const name = nameInput.value;
+			name = nameInput ? nameInput.value : '';
+			console.log(name);
+			const adamFroze = Object.freeze(adam);
+		</script>
+	</body>
 </html>
