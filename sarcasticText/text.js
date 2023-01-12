@@ -47,7 +47,19 @@ const textFilters = {
         // console.log(letter)
         return letter
     },
-    unable(){},
+    unable(letter) {
+        const random = Math.floor(Math.random() * 3)
+        letter = (letter ===" " && random % 2) ? "..." : letter
+        // if (letter === ' ' && random === 2) {
+        //     return '...'
+        // }
+        console.log(random);
+        return letter
+    },
 }
 
 textArea.addEventListener('input', e => transformText(e.target.value))
+
+filterInputs.forEach(input => input.addEventListener('input', () => {
+    transformText(textArea.value)
+}))
