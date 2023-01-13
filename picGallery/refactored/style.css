@@ -4,81 +4,82 @@
   grid-template-columns: 1fr;
   grid-gap: 2rem;
 }
+
 .gallery {
-    display: flex;
-    /* width: 100%; */
-    /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
-    justify-content: space-around;
-    /* grid-gap: 20px; */
-    /* align-items: inherit; */
-    background: rgba(38, 115, 223, 0.733);
-    /* padding: 2rem; */
-    }
+  display: flex;
+  /* width: 100%; */
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  justify-content: space-around;
+  /* grid-gap: 20px; */
+  /* align-items: inherit; */
+  background: rgba(38, 115, 223, 0.733);
+  /* padding: 2rem; */
+}
 
-    .gallery img {
-      width: 200px;
-      object-fit: cover;
-      border:1px solid black;
-    }
+.gallery img {
+  width: 200px;
+  object-fit: cover;
+  border: 1px solid black;
+}
 
 
-  .mymodal {
-    position: fixed;
-    background: rgba(36, 103, 197, 0.733);
-    z-index: 2;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
+.my-modal {
+  position: fixed;
+  background: rgba(36, 103, 197, 0.733);
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
 
-  .modalInner {
-    border-radius: 4px;
-    background: rgba(94, 101, 103, 0.994);
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
-    transform: translateY(-100vh);
-    transition: all 0.5s;
-    max-width: 1000px;
-    height: calc(100vh - 200px);
-    display: grid;
-    grid-template-columns: 50px 1fr 50px;
-    color: black;
-    margin: 3rem;
-  }
+.modalInner {
+  border-radius: 4px;
+  background: rgba(94, 101, 103, 0.994);
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-100vh);
+  transition: all 0.5s;
+  max-width: 1000px;
+  height: calc(100vh - 200px);
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  color: black;
+  margin: 3rem;
+}
 
-  .mymodal figure {
-    height: 100%;
-    background: rgba(28, 119, 199, 0.827);
-    display: grid;
-    margin: 0;
-    grid-template-rows: 1fr auto;
-  }
+.my-modal figure {
+  height: 100%;
+  background: rgba(28, 119, 199, 0.827);
+  display: grid;
+  margin: 0;
+  grid-template-rows: 1fr auto;
+}
 
-  .mymodal img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  }
+.my-modal img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
 
-  .mymodal.open {
-    opacity: 1;
-    pointer-events: all;
-  }
+.my-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
 
-  .mymodal figcaption {
-    padding: 10px;
-  }
+.my-modal figcaption {
+  padding: 10px;
+}
 
-  .mymodal h2 {
-    color: black;
-  }
+.my-modal h2 {
+  color: black;
+}
 
-  .mymodal.open .modalInner {
-    transform: translateY(0);
-  }
+.my-modal.open .modalInner {
+  transform: translateY(0);
+}
