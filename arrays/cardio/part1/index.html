@@ -16,7 +16,7 @@
     const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
 
     const buns = ['egg', 'wonder', 'brioche'];
-
+    // console.log(toppings)
     const meats = {
       beyond: 10,
       beef: 5,
@@ -106,12 +106,19 @@
     // add it back in with unshift()
     
     // Do the last four,but immutable (with spreads and new variables)
+      console.log(toppings)
+      // let newToppings = toppings.slice(0, toppings.length - 1)
+      // console.log(newToppings)
 
-      let newToppings = toppings.slice(0, toppings.length - 1)
-      console.log(newToppings)
+      // newToppings = [...newToppings, toppings[toppings.length-1]]
 
 
-      newToppings = [...newToppings, toppings[toppings.length-1]]
+      let oneTop = toppings.slice(1, toppings.length)
+      // console.log(toppings)
+      console.log(oneTop)
+
+      // oneTop.toppings
+
 
       // console.log(toppings)
       // const myTop = toppings.pop()
@@ -119,29 +126,47 @@
       // toppings.push(myTop)
       // console.log(toppings)
       // console.log(myTop)
-      const firstItem = toppings.shift()
-      toppings.unshift()
 
 
     // Make a copy of the toppings array with slice()
-    let myTop2 = toppings.slice()
+      const toppingsCopy = toppings.slice(0)
 
+      toppings[0] = 'Mushy'
+      console.log(toppings)
+      console.log(toppingsCopy)
 
-    console.log(myTop2)
 
     // Make a copy of the toppings array with a spread
 
-    const top3 = [... toppings]
+    const toppingsCopy2 = [...toppings]
+    console.log(toppingsCopy2)
 
     // take out items 3 to 5 of your new toppings array with splice()
-    
-  //  const toppy = toppings.splice(4,6)
+
+    toppingsCopy.splice(3,5)
 
     // find the index of Avocado with indexOf() / lastIndexOf()
+    const avoIndex = toppings.indexOf('Avocado')
+
+    console.log(avoIndex)
     // Check if hot sauce is in the toppings with includes()
+    const isTopping  = toppings.includes('Hot Sauce')
+    const otherTop = toppings.includes('Bacon')
+    console.log(isTopping, otherTop)
+
+    
     // add it if it's not
+    if(!isTopping){
+      toppings.push('Hot Sauce')
+      // console.log(toppings)
+    }
+
     // flip those toppings around with reverse()
 
+    // toppings.reverse()
+    // or
+    const toppingsReverse = [...toppings].reverse()
+    console.log(toppings)
     /*
       Callback Methods
     */
