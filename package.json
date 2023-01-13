@@ -1,0 +1,22 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "eslint config",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tony-Danzza/JSPractice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tony-Danzza/JSPractice/issues"
+  },
+  "homepage": "https://github.com/Tony-Danzza/JSPractice#readme",
+  "devDependencies": {
+    "eslint": "^8.31.0"
+  }
+}

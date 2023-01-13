@@ -12,24 +12,24 @@ function Gallery(gallery) {
     // let currentImg
 
 
-    
+
     // function handleImageClick(event) {
     //     showImage(event.currentTarget)
     // }
-    
+
     // There are out EventListeners
     this.images.forEach(image => image.addEventListener('click', (e) => this.showImage(e.currentTarget)));
-    
+
     this.images.forEach(image => image.addEventListener('keyup', (e) => {
         if (e.key === "Enter") {
             return this.showImage(e.currentTarget)
         }
     }))
     this.modal.addEventListener('click', this.handleClickOutside)
-   
+
 }
 
-Gallery.prototype.openModal = function() {
+Gallery.prototype.openModal = function () {
     console.info('opening modal')
     if (this.modal.matches(".open")) {
         console.info("Modal Already Open");
@@ -42,42 +42,42 @@ Gallery.prototype.openModal = function() {
     window.addEventListener('keyup', this.handleKeyUp)
     this.nextBtn.addEventListener('click', this.showNextImage)
     this.prevBtn.addEventListener('click', this.showPrevImage)
-    
+
 }
 
-Gallery.prototype.closeModal = function() {
-    modal.classList.remove('open')
+Gallery.prototype.closeModal = function () {
+    this.modal.classList.remove('open')
     window.removeEventListener('keyup', this.handleKeyUp)
     this.nextBtn.removeEventListener('click', this.showNextImage)
     this.prevBtn.removeEventListener('click', this.showPrevImage)
     //NOTE: add events for clicks and other keys
 }
 
-Gallery.prototype.handleClickOutside = function(e) {
+Gallery.prototype.handleClickOutside = function (e) {
     if (e.target === e.currentTarget) {
-        closeModal()
+        this.closeModal()
     }
 }
 
-Gallery.prototype.handleKeyUp = function(event) {
+Gallery.prototype.handleKeyUp = function (event) {
     // NOTE: Adding 'return' will stop script from continuing upon calling following function
-    if (event.key === "Escape") return closeModal();
-    if (event.key === "ArrowRight") return this.showNextImage(); 
+    if (event.key === "Escape") return this.closeModal();
+    if (event.key === "ArrowRight") return this.showNextImage();
     if (event.key === "ArrowLeft") return this.showPrevImage();
-    
+
 }
 
-Gallery.prototype.showNextImage = function() {
+Gallery.prototype.showNextImage = function () {
     // console.log(currentImg.nextElementSibling);
-    this.showImage(currentImg.nextElementSibling || gallery.firstElementChild)
+    this.showImage(this.currentImg.nextElementSibling || this.gallery.firstElementChild)
 }
-Gallery.prototype.showPrevImage = function() {
+Gallery.prototype.showPrevImage = function () {
     // console.log(currentImg.previousElementSibling);
-    this.showImage(currentImg.previousElementSibling || gallery.lastElementChild)
+    this.showImage(this.currentImg.previousElementSibling || this.gallery.lastElementChild)
 }
 
 
-Gallery.prototype.showImage = function(el) {
+Gallery.prototype.showImage = function (el) {
     if (!el) {
         console.info("No image to show.")
         return;
@@ -87,7 +87,7 @@ Gallery.prototype.showImage = function(el) {
     this.modal.querySelector('h2').textContent = el.title
     // console.log(el.dataset.description)
     this.modal.querySelector('p').textContent = el.dataset.description
-    
+
     this.currentImg = el
     this.openModal()
 }
