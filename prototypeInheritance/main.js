@@ -35,4 +35,16 @@ console.log(canadianPizza, pepperoniPizza)
 // toppings: Array [ "pepperoni" ]
 // <prototype>: Object { eat: eat(), … }
 
-// 
+// NOTE: polyfills
+
+String.prototype.sarcastic = function () {
+	const sarcastic = this.split('').map((char, i) => {
+		// char = i % 2 ? char.toUpperCase() : char.toLowerCase()
+        if (i % 2) {
+           return char.toLowerCase()
+        } else {
+            return char.toUpperCase()
+        }
+	}).join('')
+    return sarcastic
+}
