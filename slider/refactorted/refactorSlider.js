@@ -6,37 +6,33 @@ function Slider(slider) {
 		throw new Error('No valid Slider found on page!')
 	}
 
-	this.slider = slider
-
-	this.prevEl
-	this.current
-	this.nextEl
-
+    // this.slider = slider
+    
 	this.slides = slider.querySelector('.slides')
-	this.nextBtn = slider.querySelector('.go-to-next')
-	this.prevBtn = slider.querySelector('.go-to-prev')
+	const nextBtn = slider.querySelector('.go-to-next')
+	const prevBtn = slider.querySelector('.go-to-prev')
 	// console.log(prevBtn, nextBtn);
 	// console.log(slides.firstElementChild)
 	// Functions to run upon calling Slider()
 	this.startSlider()
 	this.applyClasses()
 	// move("back")
-	this.prevBtn.addEventListener('click', () => this.move('back'))
+	prevBtn.addEventListener('click', () => this.move('back'))
 	// nextBtn.addEventListener('click', function () {
 	// move("forward")
 	// })
-	this.nextBtn.addEventListener('click', () => this.move('forward'))
+	nextBtn.addEventListener('click', () => this.move('forward'))
 }
 
 Slider.prototype.startSlider = function () {
 	this.current =
-		this.slider.querySelector('.current') || this.slides.firstElementChild
+		this.slides.querySelector('.current') || this.slides.firstElementChild
 	// console.log(this.current)
 	this.prevEl =
 		this.current.previousElementSibling || this.slides.lastElementChild
 	this.nextEl =
 		this.current.nextElementSibling || this.slides.firstElementChild
-	console.log(!!this.prevEl, !!this.nextEl, 'TestME')
+	// console.log(!!this.prevEl, !!this.nextEl, 'TestME')
 }
 
 Slider.prototype.applyClasses = function () {

@@ -13,7 +13,7 @@ body
   
   .slide {
     position: absolute;
-    background: var(--pink);
+    background: var(--blue);
     height: 100%;
     width: 100%;
     display: grid;
@@ -51,4 +51,7 @@ body
     justify-content: center;
     padding: 2rem;
   }
-  
+  #control-btn:hover {
+    background: black;
+    border: 2px solid whitesmoke;
+  }

@@ -67,7 +67,7 @@ html {
   
   a.button, button, input[type="button"] {
     color: white;
-    background: var(--pink);
+    background: var(--blue);
     padding: 1rem;
     border: 0;
     border: 2px solid transparent;
@@ -75,7 +75,7 @@ html {
     font-weight: 600;
     font-size:2rem;
   }
-  
+ 
   :focus {
     outline-color: var(--pink);
   }
