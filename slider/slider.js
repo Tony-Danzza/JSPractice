@@ -73,3 +73,5 @@ function Slider(slider) {
 // const test = 
 const mainSlider = Slider(document.querySelector('.main-slider'))
 const dogSlider = Slider(document.querySelector('.dog-slider'))
+
+console.log(mainSlider, dogSlider)
