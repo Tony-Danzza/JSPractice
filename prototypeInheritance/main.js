@@ -22,6 +22,15 @@ Pizza.prototype.eat = function () {
 	return this.slices
 }
 
+// description method
+// customer name, toppings and slices left
+
+Pizza.prototype.description = function () {
+    // console.log(`Customer: ${this.customer} Toppings: ${this.toppings} Slices left: ${this.slices}`)
+    return `Customer: ${this.customer}\n Toppings: ${this.toppings.join(',')}\n Slices left: ${this.slices}`
+}
+
+
 const pepperoniPizza = new Pizza(['pepperoni'], 'Wes Bos')
 
 const canadianPizza = new Pizza(['pepperoni', 'mushrooms', 'onion'], 'Kait Bos')
@@ -36,15 +45,14 @@ console.log(canadianPizza, pepperoniPizza)
 // <prototype>: Object { eat: eat(), … }
 
 // NOTE: polyfills
-
-String.prototype.sarcastic = function () {
-	const sarcastic = this.split('').map((char, i) => {
-		// char = i % 2 ? char.toUpperCase() : char.toLowerCase()
-        if (i % 2) {
-           return char.toLowerCase()
-        } else {
-            return char.toUpperCase()
-        }
-	}).join('')
-    return sarcastic
-}
+// String.prototype.sarcastic = function () {
+// 	const sarcastic = this.split('').map((char, i) => {
+// 		// char = i % 2 ? char.toUpperCase() : char.toLowerCase()
+//         if (i % 2) {
+//            return char.toLowerCase()
+//         } else {
+//             return char.toUpperCase()
+//         }
+// 	}).join('')
+//     return sarcastic
+// }
