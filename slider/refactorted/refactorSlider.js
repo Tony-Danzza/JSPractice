@@ -6,8 +6,8 @@ function Slider(slider) {
 		throw new Error('No valid Slider found on page!')
 	}
 
-    // this.slider = slider
-    
+	// this.slider = slider
+
 	this.slides = slider.querySelector('.slides')
 	const nextBtn = slider.querySelector('.go-to-next')
 	const prevBtn = slider.querySelector('.go-to-prev')
@@ -83,3 +83,15 @@ const mainSlider = new Slider(document.querySelector('.main-slider'))
 const dogSlider = new Slider(document.querySelector('.dog-slider'))
 
 console.log(mainSlider, dogSlider)
+
+window.dogSlider = dogSlider
+
+window.addEventListener('keyup', function (e) {
+	// console.log(e);
+	if (e.key === 'ArrowRight') {
+		dogSlider.move('forward')
+	}
+	if (e.key === 'ArrowLeft') {
+		dogSlider.move('back')
+	}
+})
