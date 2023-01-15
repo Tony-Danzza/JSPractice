@@ -99,8 +99,21 @@
 
 			// apply can accept and array of additional args
 			const total3 = bill.calculate.apply({ total: 1000 }, [1.15])
-
 			console.log('total3', total3)
+
+			const myMeal = bill.describe.call( //NOTE:without 'bill' we would get this.calc is not a function, add object containing func to get access
+                bill,
+				'Hamburger',
+				'Coke',
+				1.14
+			)
+			console.log(myMeal)
+
+
+            const newMeal = bill.describe.apply(bill,  ["pizza", "beer", 1.20])
+            console.log(newMeal)
+
+
 		</script>
 	</body>
 </html>
