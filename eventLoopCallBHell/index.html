@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loops & Callback Hell</title>
+    <link rel="stylesheet" href="../base.css">
+    <!-- <script src=""></script> -->
+</head>
+<body>
+    <ul>
+        <li>JavaScript is single threaded</li>
+        <p>meaning the call Stack can only run one operation at a time</p>
+    </ul>
+
+    <ol>
+        <h3>Callback event loop</h3>
+        <li>Starts as a script</li>
+        <li>Once called moves to <strong>Call Stack</strong></li>
+        <p>If the function is async it will finish running in the call stack.</p>
+        <li>otherwise it will move to the <strong>Web API</strong> until complete</li>
+        <li>From there the function will move to the <strong>Callback Queue</strong></li>
+        <li>Where it will wait until nothing is active in the call stack to finish operations</li>
+    </ol>
+    
+    <script>
+        console.log("Starting")
+        setTimeout(function(){
+            console.log("Running")
+        }, 2000)
+        console.log("Ending")
+    </script>
+</body>
+</html>

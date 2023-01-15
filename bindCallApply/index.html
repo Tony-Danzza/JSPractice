@@ -35,7 +35,7 @@
 		<button>click ME</button>
 
 		<div class="wrapper">
-			<p>testme</p>
+			<p>test me</p>
 		</div>
 
 		<script>
@@ -57,7 +57,7 @@
 			// NOTE: bind will change the context of what this is equal to inside of a func. or method.
 
 			// QS example
-			// NOTE: when calling queryselector you need an external scope parameter. (document.querySelector)  we can use 'bind' keyword to do that.
+			// NOTE: when calling querySelector you need an external scope parameter. (document.querySelector)  we can use 'bind' keyword to do that.
 			// here by calling bind we say when '$' function is run use 'document' as the this value
 			const $ = document.querySelector.bind(document)
 
@@ -101,19 +101,17 @@
 			const total3 = bill.calculate.apply({ total: 1000 }, [1.15])
 			console.log('total3', total3)
 
-			const myMeal = bill.describe.call( //NOTE:without 'bill' we would get this.calc is not a function, add object containing func to get access
-                bill,
+			const myMeal = bill.describe.call(
+				//NOTE:without 'bill' we would get this.calc is not a function, add object containing func to get access
+				bill,
 				'Hamburger',
 				'Coke',
 				1.14
 			)
 			console.log(myMeal)
 
-
-            const newMeal = bill.describe.apply(bill,  ["pizza", "beer", 1.20])
-            console.log(newMeal)
-
-
+			const newMeal = bill.describe.apply(bill, ['pizza', 'beer', 1.2])
+			console.log(newMeal)
 		</script>
 	</body>
 </html>
