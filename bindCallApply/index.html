@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bind, Call, and Apply</title>
+		<!-- <script defer src="./main.js"></script> -->
+		<link rel="stylesheet" href="../base.css" />
+
+		<style>
+			body {
+				text-align: center;
+				color: whitesmoke;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>Frequently will be asked about on in interviews</h3>
+
+		<ul>
+			<li>
+				JS 'this' keyword is defined by where the function is being
+				called and not where the function is being defined.
+			</li>
+
+			<li>
+				bind will change the context of what this is equal to inside of
+				a func. or method.
+			</li>
+		</ul>
+		<br />
+
+		<p>test</p>
+		<button>click ME</button>
+
+		<div class="wrapper">
+			<p>testme</p>
+		</div>
+
+		<script>
+			const person = {
+				name: 'Adam McWhorter',
+				sayHi() {
+					return `Hi, ${this.name}`
+				},
+			}
+			// console.log(person.sayHi(name))
+
+			const finn = { name: 'Finn Lee' }
+
+			const sayHi = person.sayHi.bind(finn)
+
+			console.log(person.sayHi())
+			console.log(sayHi())
+
+			// NOTE: bind will change the context of what this is equal to inside of a func. or method.
+
+			// QS example
+			// NOTE: when calling queryselector you need an external scope parameter. (document.querySelector)  we can use 'bind' keyword to do that.
+			// here by calling bind we say when '$' function is run use 'document' as the this value
+			const $ = document.querySelector.bind(document)
+
+			const wrapper = document.querySelector('.wrapper')
+
+			const p = wrapper.querySelector('p')
+
+			console.log(wrapper, p)
+			console.log($('.wrapper p').textContent)
+
+			const bill = {
+				total: 1000,
+				calculate(taxRate) {
+					return this.total * taxRate
+				},
+				describe(mealType, drinkType, taxRate) {
+					return `Your meal of ${mealType}, with ${drinkType} was a total of ${this.calculate(
+						taxRate
+					)}`
+				},
+			}
+
+			console.log(bill.describe('pizza', 'beer', 1.13))
+
+			const total = bill.calculate(1.15)
+			const newBill = { total: 12345 }
+			// NOTE: you can preload arguments in your bind call.
+			const calc = bill.calculate.bind(newBill, 1.09)
+			const calc2 = bill.calculate.bind({ total: 600 }, 0.16)
+			console.log(calc())
+			console.log(calc2())
+
+			// call & apply
+
+			// NOTE: call work the same as bind except will call the item immediately
+
+			const total2 = bill.calculate.call({ total: 1550 }, 1.15)
+			console.log(total2)
+
+			// apply can accept and array of additional args
+			const total3 = bill.calculate.apply({ total: 1000 }, [1.15])
+
+			console.log('total3', total3)
+		</script>
+	</body>
+</html>
