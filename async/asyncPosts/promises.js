@@ -6,7 +6,8 @@ const posts = [
 function getPost() {
     setTimeout(() => {
         let output = ''
-        posts.forEach((post, index) => {
+        // eslint-disable-next-line no-unused-vars
+        posts.forEach((post, _) => {
             output += `<li>${post.title}</li>`
         });
         document.body.innerHTML = output
@@ -19,7 +20,7 @@ getPost()
 
 
 
-
+ // eslint-disable-next-line no-unused-vars
 function createPost(post) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -46,7 +47,8 @@ function createPost(post) {
 
 const promise1 = Promise.resolve('Hello World')
 const promise2 = 10
-const promise3 = new Promise((resolve, reject) => {
+ // eslint-disable-next-line no-unused-vars
+const promise3 = new Promise((resolve, _reject) => {
     setTimeout(resolve, 2000, "Goodbye")
 })
 const promise4 =

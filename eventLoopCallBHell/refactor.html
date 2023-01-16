@@ -39,7 +39,7 @@
 		</style>
 	</head>
 	<body>
-		<h4>Refact</h4>
+		<h4>Refactor</h4>
 		<ul>
 			<li>JavaScript is single threaded</li>
 			<p>meaning the call Stack can only run one operation at a time</p>
@@ -92,27 +92,47 @@
 
 			const go = document.querySelector('.go')
 
-			go.addEventListener('click', function (e) {
-				const el = e.currentTarget
-				el.textContent = 'Go!'
-				wait(2000).then(() => {
-					el.classList.add('round')
-					wait(500).then(() => {
-						el.classList.add('red')
-						wait(250).then(() => {
-							el.classList.remove('round')
-							wait(300).then(() => {
-								el.classList.remove('red')
-								el.classList.add('purple')
-								wait(500).then(() => {
-									el.textContent = 'Goodbye!'
-									el.classList.add('fade')
-								})
-							})
-						})
-					})
-				})
-			})
+			async function animate(e) {
+				el = e.currentTarget
+				el.textContent = 'Go'
+				await wait(2000) 
+				el.classList.add('round')
+				await wait(500)
+				el.classList.add('red')
+				await wait(250)
+				el.classList.remove('round')
+				await wait(300)
+				el.classList.remove('red')
+				el.classList.add('purple')
+				await wait(500)
+				el.textContent = "Goodbye"
+				el.classList.add('fade')
+
+			}
+
+			go.addEventListener('click', animate)
+
+			// go.addEventListener('click', function (e) {
+			// 	const el = e.currentTarget
+			// 	el.textContent = 'Go!'
+			// 	wait(2000).then(() => {
+			// 		el.classList.add('round')
+			// 		wait(500).then(() => {
+			// 			el.classList.add('red')
+			// 			wait(250).then(() => {
+			// 				el.classList.remove('round')
+			// 				wait(300).then(() => {
+			// 					el.classList.remove('red')
+			// 					el.classList.add('purple')
+            //                     el.textContent = 'Goodbye!'
+			// 					wait(500).then(() => {
+			// 						el.classList.add('fade')
+			// 					})
+			// 				})
+			// 			})
+			// 		})
+			// 	})
+			// })
 
 			// go.addEventListener('click', function (e) {
 			// 	const el = e.currentTarget
