@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Event Loops & Callback Hell</title>
+		<title>Refactored Promises</title>
 		<link rel="stylesheet" href="../base.css" />
 		<!-- <script src=""></script> -->
 		<style>
@@ -39,6 +39,7 @@
 		</style>
 	</head>
 	<body>
+		<h4>Refact</h4>
 		<ul>
 			<li>JavaScript is single threaded</li>
 			<p>meaning the call Stack can only run one operation at a time</p>
@@ -75,29 +76,65 @@
 			}, 2000)
 			console.log('Ending')
 
+			// function wait(ms=0) {
+			//     return new Promise(function (resolve) {
+			//         setTimeout(resolve, ms)
+			//     })
+
+			// }
+
+			const wait = (amount = 0) =>
+				new Promise((resolve) => setTimeout(resolve, amount))
+
+			wait(200).then(() => {
+				console.log('done waiting?!')
+			})
+
 			const go = document.querySelector('.go')
 
 			go.addEventListener('click', function (e) {
 				const el = e.currentTarget
-				el.textContent = 'Go'
-				// el.classList.add('round')
-				setTimeout(function () {
+				el.textContent = 'Go!'
+				wait(2000).then(() => {
 					el.classList.add('round')
-					setTimeout(function () {
+					wait(500).then(() => {
 						el.classList.add('red')
-						setTimeout(function () {
+						wait(250).then(() => {
 							el.classList.remove('round')
-							setTimeout(function () {
+							wait(300).then(() => {
+								el.classList.remove('red')
 								el.classList.add('purple')
-								setInterval(function () {
-									el.textContent = 'GoodBye'
+								wait(500).then(() => {
+									el.textContent = 'Goodbye!'
 									el.classList.add('fade')
-								}, 500)
-							}, 300)
-						}, 250)
-					}, 500)
-				}, 2000)
+								})
+							})
+						})
+					})
+				})
 			})
+
+			// go.addEventListener('click', function (e) {
+			// 	const el = e.currentTarget
+			// 	el.textContent = 'Go'
+			// 	// el.classList.add('round')
+			// 	setTimeout(function () {
+			// 		el.classList.add('round')
+			// 		setTimeout(function () {
+			// 			el.classList.add('red')
+			// 			setTimeout(function () {
+			// 				el.classList.remove('round')
+			// 				setTimeout(function () {
+			// 					el.classList.add('purple')
+			// 					setInterval(function () {
+			// 						el.textContent = 'GoodBye'
+			// 						el.classList.add('fade')
+			// 					}, 500)
+			// 				}, 300)
+			// 			}, 250)
+			// 		}, 500)
+			// 	}, 2000)
+			// })
 		</script>
 	</body>
 </html>
