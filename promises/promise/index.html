@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Promises</title>
+		<link rel="stylesheet" href="../../base.css" />
+	</head>
+	<body>
+		<script>
+			function makePizza(toppings = []) {
+				const pizzaPromise = new Promise(function (resolve, reject) {
+					// NOTE: when ready resolve promise
+					const bakeTime = 500 + toppings.length * 200
+					setTimeout(function () {
+						resolve(
+							`Here is your ${
+								toppings ? toppings.join(', ') : 'Plain'
+							} pizza! 🍕`
+						)
+					}, bakeTime)
+					// resolve(`Here is your ${toppings.join(' ')} pizza. 🍕`)
+					// NOTE: if not reject promise
+					// reject(
+					//     new Error("No pizza's around")
+					// )
+				})
+				return pizzaPromise
+			}
+
+			const pepperPizza = makePizza(['Pepperoni'])
+			const canadaPizza = makePizza(['Pineapple', 'Canadian bacon'])
+			console.log(pepperPizza, canadaPizza)
+
+
+			// console.log('running First')
+            
+			// pepperPizza
+			// 	.then((pizza) => {
+			// 		console.log(pizza, "im a index -1")
+			// 	})
+			// 	.catch((err) => {
+			// 		console.log(JSON.stringify(err))
+			// 	})
+
+			// makePizza([
+			// 	'Buffalo Chicken',
+			// 	'Pineapple',
+			// 	'Canadian bacon',
+			// 	'mushrooms',
+			// 	'olives',
+			// ]).then((pizza) => {
+			// 	console.log(pizza, "i am last")
+			// })
+            // console.log('running Last (not)')
+
+
+            const pizzaPromise1 = makePizza([
+                'Buffalo Chicken',
+				'Pineapple',
+				'Canadian bacon',
+				'mushrooms',
+				'olives',])
+            const pizzaPromise2 = makePizza([
+				'Pineapple',
+				'Canadian bacon',])
+            const pizzaPromise3 = makePizza([
+				'Cheese',])
+
+
+
+            // static method Promise.all() which takes in an array of promises and will wait for them all to resolve. 
+
+            const pizzaParty = Promise.all([pizzaPromise1,pizzaPromise2, pizzaPromise3])
+
+            pizzaParty.then(([garbage, canadian, cheese]) =>{
+                // const [garbage, canadian, cheese] = pizzas
+                // pizzas.forEach(pizza => console.log(pizza))
+                // console.log(pizzas)
+                console.log('1',garbage,'\n2', canadian,'\n3', cheese)
+
+            })
+            
+			
+            // NOTE: similarly to Promise.all there is .race which will return the first resolved promise
+            const pizzaRace = Promise.race([pizzaPromise1,pizzaPromise2, pizzaPromise3])
+
+            pizzaRace.then(firstPie => {
+                console.log(`first pizza done ${firstPie}`)
+                console.log(firstPie)
+            })
+
+
+
+		</script>
+	</body>
+</html>

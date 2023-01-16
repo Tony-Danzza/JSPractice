@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Promise Error Handling</title>
+		<link rel="stylesheet" href="../../base.css" />
+	</head>
+	<body>
+		<h2>Error handling promises</h2>
+		<script>
+			function makePizza(toppings = []) {
+				return new Promise(function (resolve, reject) {
+					if (toppings.includes('pineapple')) {
+						reject(
+							new TypeError("I guess we don't like 🍍 on our 🍕.")
+						)
+					}
+
+					const bakeTime = 500 + toppings.length * 200
+
+					setTimeout(function () {
+						resolve(
+							`Here is your ${
+								toppings ? toppings.join(', ') : 'Plain'
+							} pizza! 🍕`
+						)
+					}, bakeTime)
+					// resolve(`Here is your ${toppings.join(' ')} pizza. 🍕`)
+					// NOTE: if not reject promise
+					// reject(
+					//     new Error("No pizza's around")
+					// )
+				})
+				return pizzaPromise
+			}
+
+			makePizza(['cheese', 'pineapple'])
+				.then((pizza) => console.log(pizza))
+				//NOTE: without a catch "Uncaught (in promise) TypeError: I guess we don't like 🍍 on our 🍕."
+				.catch((error) => {
+					console.log(error)
+				})
+		</script>
+	</body>
+</html>
