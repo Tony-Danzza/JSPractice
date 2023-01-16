@@ -9,13 +9,23 @@
 	</head>
 	<body>
 		<h2>Error handling promises</h2>
+		<ul>
+			<li>
+				You Can put one .catch at the end of a promise chain for error
+				handling (one .catch to many then statements)
+			</li>
+			<li>
+				the promise chain will stop at the point in the chain the error
+				in triggered
+			</li>
+			<li>leaving the rest unresolved.</li>
+		</ul>
+
 		<script>
 			function makePizza(toppings = []) {
 				return new Promise(function (resolve, reject) {
 					if (toppings.includes('pineapple')) {
-						reject(
-							new TypeError("I guess we don't like 🍍 on our 🍕.")
-						)
+						reject("I guess we don't like 🍍 on our 🍕.")
 					}
 
 					const bakeTime = 500 + toppings.length * 200
@@ -42,6 +52,20 @@
 				.catch((error) => {
 					console.log(error)
 				})
+
+			const p1 = makePizza(['pep'])
+			const p2 = makePizza(['cheese'])
+			const p3 = makePizza(['pineapple'])
+
+            // .all vs .allSettled
+            //NOTE: all will fail it all promises are not resolved, where .allSettled will return an array of results either way. 
+			const myPizza = Promise.allSettled([p1, p2, p3])
+
+			myPizza
+				.then((pizza) => {
+					console.log(pizza)
+				})
+				.catch((err) => console.log(err))
 		</script>
 	</body>
 </html>
