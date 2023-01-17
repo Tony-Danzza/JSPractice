@@ -4,10 +4,8 @@ const wait = (amount = 0) =>
 async function destroyPopup(popup) {
 	popup.classList.remove('open')
 	await wait(1000)
-
-    
 	popup.remove()
-    popup = null //NOTE: to remove completely from DOM
+	popup = null //NOTE: to remove completely from DOM
 }
 
 function ask(options) {
@@ -20,7 +18,7 @@ function ask(options) {
 			'afterbegin',
 			`<fieldset>
                 <label>${options.title}</label>
-                <input type="text" name="input" placeholder="Enter Value...">
+                <input type="text" name="input" placeholder="...">
                 <button type="submit">Submit</button>
         </fieldset>`
 		)
@@ -35,12 +33,17 @@ function ask(options) {
 			popup.firstElementChild.appendChild(skipBtn) //NOTE: by using firstChild we can append it right to the fieldset, b/c fieldset it the first element.
 
 			// TODO: listen for click on button
-			skipBtn.addEventListener('click', function (e) {
-				console.log(e.currentTarget)
-				if (e.currentTarget === skipBtn) {
-					popup.classList.remove('open')
-				}
-			})
+			skipBtn.addEventListener(
+				'click',
+				function () {
+					// console.log(e.currentTarget)
+					resolve(null) //
+					// if (e.currentTarget === skipBtn) {
+					destroyPopup(popup)
+					// }
+				},
+				{ once: true }
+			)
 		}
 
 		// listen for the submit event
@@ -73,4 +76,36 @@ function ask(options) {
 	})
 }
 
+async function askQuestion(e) {
+	const button = e.currentTarget
+
+	const cancelItem = 'cancel' in button.dataset //NOTE: "'property-name' in element" is how you check if a property is present, even if FALSY
+	// const cancelItem = button.hasAttribute('data-cancel') //NOTE: this would also work
+
+	const answer = await ask({
+		title: button.dataset.question,
+		cancel: cancelItem,
+	})
+
+	console.log(answer)
+}
+
 console.log(ask)
+
+const buttons = document.querySelectorAll('[data-question]') //this will select any element with the attr. of data-question
+
+buttons.forEach((btn) => btn.addEventListener('click', askQuestion))
+
+const questions = [
+	{ title: 'What is your Name?' },
+	{ title: 'What is your age?', cancel: true },
+	{ title: "What is your dog's name?" },
+]
+
+Promise.allSettled([
+	ask(questions[0]),
+	ask(questions[1]),
+	ask(questions[2]),
+]).then((answers) => {
+	console.log(answers)
+})
