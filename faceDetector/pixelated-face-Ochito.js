@@ -14,7 +14,7 @@ console.log(video, canvas, faceCanvas, faceDetector)
 
 async function populateVideo() {
 	const stream = await navigator.mediaDevices.getUserMedia({
-		// video: {width: 1280, height:720}, //TODO: uncomment for correct functionality
+		// video: {width: 1280, height:720}, //NOTE: uncomment for correct functionality
 		audio: true,
 	})
 	video.srcObject = stream
@@ -28,9 +28,7 @@ async function populateVideo() {
 
 async function detect() {
 	const faces = await faceDetector.detect(video)
-    console.log(faces)
-
-	requestAnimationFrame(detect)  //NOTE: using this function instead of setInterval for recursion of our detect function.
+	console.log(faces)
 }
 
 detect()
