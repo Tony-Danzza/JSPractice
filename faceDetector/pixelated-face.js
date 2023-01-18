@@ -32,6 +32,10 @@ async function populateVideo() {
 
 }
 
+async function detect() {
+    const faces = await faceDetector.detect(video)
+    console.log(faces);
+}
 
-populateVideo()
-
+detect()
+window.populateVideo = populateVideo
