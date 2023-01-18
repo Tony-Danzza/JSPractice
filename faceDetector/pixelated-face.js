@@ -14,8 +14,8 @@ console.log(video, canvas, faceCanvas, faceDetector)
 
 async function populateVideo() {
 	const stream = await navigator.mediaDevices.getUserMedia({
-		// video: {width: 1280, height:720}, //TODO: uncomment for correct functionality
-		audio: true,
+		video: {width: 1280, height:720}, //TODO: uncomment for correct functionality
+		// audio: true,
 	})
 	video.srcObject = stream
 	await video.play()
@@ -39,9 +39,10 @@ function drawFace(face) {
 	console.log(face);
 	const {width, height, top, left} = face.boundingBox
 	console.log({ width, height, left, top }) //NOTE: {} trick. wrap variable in curly brackets, and in the browser it will return the names with them.
-	ctx.strokeRect(left, top, width, height)
+	ctx.clearRect(0,0, canvas.width, canvas.height)
 	ctx.strokeStyle = '#ffc600'
 	ctx.lineWidth = 2
+	ctx.strokeRect(left, top, width, height)
 
 }
 
