@@ -28,11 +28,17 @@ async function populateVideo() {
 
 async function detect() {
 	const faces = await faceDetector.detect(video)
-    console.log(faces)
+	console.log(faces)
+	console.log(faces.length)
+	faces.forEach(drawFace)
 
-	requestAnimationFrame(detect)  //NOTE: using this function instead of setInterval for recursion of our detect function.
+	requestAnimationFrame(detect) //NOTE: using this function instead of setInterval for recursion of our detect function.
 }
 
-
+function drawFace(face) {
+	console.log(face);
+	const {width, height, top, left} = face.boundingBox
+	console.log(width, height, left, top)
+}
 
 populateVideo().then(detect)
