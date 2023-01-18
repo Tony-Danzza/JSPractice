@@ -62,6 +62,17 @@ function censor({ boundingBox: face }) {
 		SIZE,
 		SIZE
 	)
+	faceCtx.drawImage(
+		faceCanvas,
+		face.x,
+		face.y,
+		SIZE,
+		SIZE,
+		face.x,
+		face.y,
+		face.width,
+		face.height
+	)
 	// take small face out
 
 	// and redraw at normal size
