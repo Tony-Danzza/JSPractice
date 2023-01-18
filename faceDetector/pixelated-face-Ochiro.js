@@ -33,6 +33,10 @@ async function detect() {
 	requestAnimationFrame(detect)  //NOTE: using this function instead of setInterval for recursion of our detect function.
 }
 
+function drawFace() {
+	
+}
+
 
 
 populateVideo().then(detect)
