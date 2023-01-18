@@ -2,6 +2,8 @@ const video = document.querySelector('.webcam')
 
 const canvas = document.querySelector('.video')
 const ctx = canvas.getContext('2d')
+ctx.strokeStyle = '#ffc600'
+ctx.lineWidth = 2
 
 const faceCanvas = document.querySelector('.face')
 const faceCtx = canvas.getContext('2d')
@@ -38,7 +40,8 @@ async function detect() {
 function drawFace(face) {
 	console.log(face);
 	const {width, height, top, left} = face.boundingBox
-	console.log(width, height, left, top)
+	console.log({ width, height, left, top }) //NOTE: {} trick. wrap variable in curly brackets, and in the browser it will return the names with them.
+	ctx.strokeRect(left, top, width, height)
 }
 
 populateVideo().then(detect)
