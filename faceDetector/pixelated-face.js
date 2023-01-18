@@ -18,9 +18,12 @@ console.log(video, canvas, faceCanvas, faceDetector)
 
 function populateVideo() {
     const stream = navigator.mediaDevices.getUserMedia({
-        video: {width: 1280, height:720}
+        // video: {width: 1280, height:720},
+        audio: true,
     })
     console.log(stream)
 }
 
+
+populateVideo()
 
