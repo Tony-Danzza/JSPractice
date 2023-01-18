@@ -3,6 +3,7 @@ const wait = (amount = 0) =>
 
 async function destroyPopup(popup) {
 	popup.classList.remove('open')
+	popup.classList.add('close')
 	await wait(1000)
 	popup.remove()
 	popup = null //NOTE: to remove completely from DOM
@@ -18,7 +19,7 @@ function ask(options) {
 			'afterbegin',
 			`<fieldset>
                 <label>${options.title}</label>
-                <input type="text" name="input" placeholder="...">
+                <input tabindex="0" type="text" name="input" placeholder="...">
                 <button type="submit">Submit</button>
         </fieldset>`
 		)
@@ -79,7 +80,7 @@ function ask(options) {
 async function askQuestion(e) {
 	const button = e.currentTarget
 
-	const cancelItem = 'cancel' in button.dataset //NOTE: "'property-name' in element" is how you check if a property is present, even if FALSY
+	const cancelItem = 'cancel' in button.dataset //NOTE: "'property-name' in element" is how you check if a property is present, even if FALSEY
 	// const cancelItem = button.hasAttribute('data-cancel') //NOTE: this would also work
 
 	const answer = await ask({
@@ -87,7 +88,7 @@ async function askQuestion(e) {
 		cancel: cancelItem,
 	})
 
-	console.log(answer)
+	// console.log(answer)
 }
 
 console.log(ask)
@@ -102,10 +103,45 @@ const questions = [
 	{ title: "What is your dog's name?" },
 ]
 
-Promise.allSettled([
-	ask(questions[0]),
-	ask(questions[1]),
-	ask(questions[2]),
-]).then((answers) => {
+// Promise.allSettled([
+// 	ask(questions[0]),
+// 	ask(questions[1]), // NOTE: this well not work since we are trying to return our promises sequentially
+// 	ask(questions[2]), //NOTE: not all at once
+// ]).then((answers) => {
+// 	console.log(answers)
+// })
+
+
+// NOTE: we use map to go over each question
+// Promise.allSettled([questions.map(ask)]).then(data => {
+//     console.log(data)
+// })
+
+
+// 
+async function asyncMap(array, callback) {
+    const results = []
+    for (const item of array) {
+        const result = await callback(item)
+        results.push(result)
+    }
+    return results   
+}
+
+// asyncMap(questions, ask)
+
+async function go() {
+	const answers = await asyncMap(questions, ask)
 	console.log(answers)
-})
+}
+go()
+// async function askMany() {
+//     for (const question of questions ) {    // NOTE: for (of) allows your to pause a loop by awaiting something inside it.
+//         const answer = await ask(question)
+//         console.log(answer);
+//     }
+    
+// }
+
+
+// askMany()
