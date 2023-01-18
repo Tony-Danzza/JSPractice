@@ -16,12 +16,20 @@ console.log(video, canvas, faceCanvas, faceDetector)
 
 // console.log(ctx, faceCtx);
 
-function populateVideo() {
-    const stream = navigator.mediaDevices.getUserMedia({
-        // video: {width: 1280, height:720},
+async function populateVideo() {
+    const stream = await navigator.mediaDevices.getUserMedia({
+        // video: {width: 1280, height:720}, //NOTE: uncomment for correct functionality
         audio: true,
     })
+    video.srcObject = stream
+    await video.play()
     console.log(stream)
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+    faceCanvas.width = video.videoWidth
+    faceCanvas.height = video.videoHeight
+
+
 }
 
 
