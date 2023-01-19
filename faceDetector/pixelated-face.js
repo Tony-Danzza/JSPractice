@@ -21,10 +21,8 @@ const options = {
 }
 
 function handleOption(event) {
-	const name = event.currentTarget.name
-	const value = event.currentTarget.value
-	console.log(name, value)
-	return name, value
+	const { value, name } = event.currentTarget
+	options[name] = parseFloat(value)
 }
 
 optionsInput.forEach(input => input.addEventListener('input', handleOption))
