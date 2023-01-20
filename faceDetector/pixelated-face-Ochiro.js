@@ -6,9 +6,6 @@ const ctx = canvas.getContext('2d')
 const faceCanvas = document.querySelector('.face')
 const faceCtx = faceCanvas.getContext('2d')
 
-const optionsInput = document.querySelectorAll('.controls input[type="range"]')
-console.log(optionsInput);
-
 // eslint-disable-next-line no-undef
 const faceDetector = new window.FaceDetector()
 console.log(video, canvas, faceCanvas, faceDetector)
@@ -19,14 +16,6 @@ const options = {
 	SCALE: 1.5,
 	
 }
-
-function handleOption(event) {
-	const { value, name } = event.currentTarget
-	options[name] = parseFloat(value)
-}
-
-optionsInput.forEach(input => input.addEventListener('input', handleOption))
-
 
 async function populateVideo() {
 	const stream = await navigator.mediaDevices.getUserMedia({
