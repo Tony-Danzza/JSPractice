@@ -6,8 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API's</title>
     <link rel="stylesheet" href="../base.css">
+    <script defer src="./ajax.js"></script>
 </head>
 <body>
+    <ul>
+        <h3>AJAX</h3>
+        <li>Async</li>
+        <li>Javascript</li>
+        <li>and</li>
+        <li>XML</li>
+    </ul>
     
+    <p class="user"></p>
+
+    <script>
+        const baseEndpoint = 'https://api.githu/b.com'
+        const usersEndpoint = `${baseEndpoint}/users`
+        const endPoint = `https://api.github.com/users/Tony-danzza`
+        const myPromise = fetch(endPoint)
+        
+        const userEl = document.querySelector('.user')
+
+
+        async function displayUser(username) {
+            userEl.textContent = 'Loading...'
+            const response = await fetch(`${usersEndpoint}/${username}`)
+            const data = await response.json()
+            console.log(data)
+            console.log(data.blog ? data.blog : "No blog data returned")
+            console.log(data.name)
+            userEl.textContent = `${data.name} ${data.blog ? data.blog : "No blog data returned"}`
+
+        }
+        
+        
+        function handleError(err) {
+            console.log('OhNO')
+            console.log(err)
+            userEl.textContent = `Something has gone wrong. ${err}`
+        }
+
+        myPromise
+            .then(res => {
+                return res.json()
+            }).then(data =>{
+                console.log(data)
+            })
+            .catch(handleError) 
+            console.log(myPromise)
+
+        displayUser('Tony-Danzza').catch(handleError)
+            
+        </script>
 </body>
 </html>

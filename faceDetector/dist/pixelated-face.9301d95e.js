@@ -126,13 +126,28 @@ var video = document.querySelector('.webcam');
 var canvas = document.querySelector('.video');
 var ctx = canvas.getContext('2d');
 var faceCanvas = document.querySelector('.face');
-var faceCtx = canvas.getContext('2d');
+var faceCtx = faceCanvas.getContext('2d');
+var optionsInput = document.querySelectorAll('.controls input[type="range"]');
+console.log(optionsInput);
 
 // eslint-disable-next-line no-undef
 var faceDetector = new window.FaceDetector();
 console.log(video, canvas, faceCanvas, faceDetector);
 
 // console.log(ctx, faceCtx);
+var options = {
+  SIZE: 10,
+  SCALE: 1.5
+};
+function handleOption(event) {
+  var _event$currentTarget = event.currentTarget,
+    value = _event$currentTarget.value,
+    name = _event$currentTarget.name;
+  options[name] = parseFloat(value);
+}
+optionsInput.forEach(function (input) {
+  return input.addEventListener('input', handleOption);
+});
 function populateVideo() {
   return _populateVideo.apply(this, arguments);
 }
@@ -147,7 +162,7 @@ function _populateVideo() {
             video: {
               width: 1280,
               height: 720
-            } //NOTE: uncomment for correct functionality
+            } //TODO: uncomment for correct functionality
             // audio: true,
           });
         case 2:
@@ -159,7 +174,9 @@ function _populateVideo() {
           console.log(stream);
           canvas.width = video.videoWidth;
           canvas.height = video.videoHeight;
-        case 9:
+          faceCanvas.width = video.videoWidth;
+          faceCanvas.height = video.videoHeight;
+        case 11:
         case "end":
           return _context.stop();
       }
@@ -169,7 +186,7 @@ function _populateVideo() {
 }
 function detect() {
   return _detect.apply(this, arguments);
-} // detect()
+}
 function _detect() {
   _detect = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
     var faces;
@@ -181,7 +198,11 @@ function _detect() {
         case 2:
           faces = _context2.sent;
           console.log(faces);
-        case 4:
+          console.log(faces.length);
+          faces.forEach(drawFace);
+          faces.forEach(censor);
+          requestAnimationFrame(detect); //NOTE: using this function instead of setInterval for recursion of our detect function.
+        case 8:
         case "end":
           return _context2.stop();
       }
@@ -189,8 +210,52 @@ function _detect() {
   }));
   return _detect.apply(this, arguments);
 }
+function drawFace(face) {
+  console.log(face);
+  var _face$boundingBox = face.boundingBox,
+    width = _face$boundingBox.width,
+    height = _face$boundingBox.height,
+    top = _face$boundingBox.top,
+    left = _face$boundingBox.left;
+  console.log({
+    width: width,
+    height: height,
+    left: left,
+    top: top
+  }); //NOTE: {} trick. wrap variable in curly brackets, and in the browser it will return the names with them.
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#ffc600';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(left, top, width, height);
+}
+function censor(_ref) {
+  var face = _ref.boundingBox;
+  faceCtx.imageSmoothingEnabled = false;
+  faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
+  // draw small face
+  faceCtx.drawImage(
+  // 5 source arguments
+  video,
+  // where does the src come frm?
+  face.x,
+  //
+  face.y,
+  //X, y cord where we start the source pull from?
+  face.width, face.height,
+  // next desired height and width of the pull
+  // 4 draw arguments
+  face.x,
+  //where to start drawing our x, y
+  face.y, options.SIZE, options.SIZE);
+  var width = face.width * options.SCALE;
+  var height = face.height * options.SCALE;
+  faceCtx.drawImage(faceCanvas, face.x, face.y, options.SIZE, options.SIZE, face.x - (width - face.width) / 2, face.y - (height - face.height) / 2, width, height);
+  // take small face out
+
+  // and redraw at normal options.size
+}
+
 populateVideo().then(detect);
-// window.populateVideo = populateVideo
 },{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -216,7 +281,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55847" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52507" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
