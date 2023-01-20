@@ -15,14 +15,17 @@ const buttonText = [
   
 
 async function fetchJoke() {
+    jokeHolder.textContent = 'Loading...'
     const response = await fetch('https://icanhazdadjoke.com', {
         headers: {
             Accept: 'application/json',
             
         }
     })
-    const joke = await response.json()
-    console.log(joke)
+    const data = await response.json()
+    console.log(data)
+    // return response.json()
+    return data
 }
 
 function handleError(err) {
@@ -30,4 +33,11 @@ function handleError(err) {
     return new ErrorEvent(err)
 }
 
-fetchJoke().catch(handleError)
+
+// console.log(fetchJoke().catch(handleError))
+jokeBtn.addEventListener('click', async function () {
+
+    const { joke } = await fetchJoke().catch(handleError) //NOTE:  { joke } to destructure data obj. and only access the joke property
+    console.log(joke);
+    jokeHolder.textContent = joke
+})
