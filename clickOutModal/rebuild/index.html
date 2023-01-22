@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Out Modal</title>
+    <link rel="stylesheet" href="../../base.css">
+    <script defer src="./main.js"></script>
+    
+    <style>
+        .cards
+        {
+            display: grid;
+            grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+            grid-gap: 20px;
+            /* padding: auto; */
+            margin: 3rem;
+
+        }
+        .card
+        {
+            background: whitesmoke;
+            padding: 1rem;
+            border-radius: 2px;
+        }
+        .card img
+        {
+            width: 100%;
+        }
+        .card h2
+        {
+            color: black;
+        }
+        .card button
+        {
+            border: 4px solid black;
+            border-radius: 4px;
+        }
+        .modal-outer
+        {
+            display: grid;
+            background: hsla(30, 100%, 5%, 0.7);
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;    
+            pointer-events: none; /*NOTE: key to completely removing this item with css */
+            transition: opacity 0.2s;
+        }
+        .modal-outer.open
+        {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal-inner
+        {
+            min-width: 400px;
+            max-width: 600px;
+            min-height: 200px;
+            border-radius: 5px;
+            padding: 2rem;
+            background: whitesmoke;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="cards">
+        <div class="card" data-description="Wes is cool">
+          <img src="https://picsum.photos/200?=random1" alt="Wes Bos">
+          <h2>Wes Bos</h2>
+          <button>Learn more →</button>
+        </div>
+        <div class="card" data-description="Scott is neat!">
+          <img src="https://picsum.photos/200?=random2" alt="Wes Bos">
+          <h2>Scott Tolinski</h2>
+          <button>Learn more →</button>
+        </div>
+        <div class="card" data-description="Kait is beautiful!">
+          <img src="https://picsum.photos/200?=random3" alt="Wes Bos">
+          <h2>Kait Bos</h2>
+          <button>Learn more →</button>
+        </div>
+        <div class="card" data-description="Snickers is a dog!">
+          <img src="https://picsum.photos/200?=random4" alt="Wes Bos">
+          <h2>Snickers the dog</h2>
+          <button>Learn more →</button>
+        </div>
+    
+      </div>
+    
+      <div class="modal-outer">
+        <div class="modal-inner">
+    
+        </div>
+      </div>
+    
+</body>
+</html>
