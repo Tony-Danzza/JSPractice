@@ -1,4 +1,4 @@
-import { sayHello } from "./handlers.mjs";
+import { sayHello } from "./handlers.js";
 const name = 'Adam'
 
 
