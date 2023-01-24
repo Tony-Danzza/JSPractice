@@ -15,7 +15,7 @@ function displayColors(colors) {
 	return colors
 		.map(
 			(color) =>
-				`<span class="color ${isDark(color) ? 'dark' : ''}" style="background: ${color};">${color}</span>`
+				`<span class="color ${isDark(color) ? 'dark' : ''}" id="${color}" style="background: ${color};">${color}</span>`
 		)
 		.join('')
 }

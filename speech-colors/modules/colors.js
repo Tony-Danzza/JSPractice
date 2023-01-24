@@ -157,6 +157,9 @@ export const colors = {
     return r * 0.299 + g * 0.587 + b * 0.114 < 120; //NOTE: if the sum of  rgb are less than 120 they are considered light colors, and vice versa
   }
   
+export function isValidColor(word) {
+  return !!colors[word]
+}
 
 export const colorsByLength = Object.keys(colors).sort((a, b) => {
     return a.length - b.length

@@ -125,6 +125,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.colorsByLength = exports.colors = void 0;
 exports.isDark = isDark;
+exports.isValidColor = isValidColor;
 var colors = {
   black: '#000000',
   silver: '#C0C0C0',
@@ -284,6 +285,9 @@ function isDark(colorName) {
   return r * 0.299 + g * 0.587 + b * 0.114 < 120; //NOTE: if the sum of  rgb are less than 120 they are considered light colors, and vice versa
 }
 
+function isValidColor(word) {
+  return !!colors[word];
+}
 var colorsByLength = Object.keys(colors).sort(function (a, b) {
   return a.length - b.length;
 });
@@ -296,6 +300,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.handleResult = handleResult;
+var _colors = require("./colors");
 function logWords(results) {
   console.log(results[results.length - 1][0].transcript);
 }
@@ -303,9 +308,17 @@ function handleResult(_ref) {
   var results = _ref.results;
   logWords(results);
   var words = results[results.length - 1][0].transcript;
-  console.log(words);
+  var color = words.toLowerCase();
+  // color = color.replaceAll(' ', '')
+  color = color.replace(/\s/g, '');
+  if (!(0, _colors.isValidColor)(color)) return;
+  // const colorSpan = document.querySelector(`.${color}`)
+  var colorSpan = document.getElementById("".concat(color));
+  colorSpan.classList.add('got');
+  console.log(colorSpan);
+  console.log("VALID COLOR", color);
 }
-},{}],"speech.js":[function(require,module,exports) {
+},{"./colors":"modules/colors.js"}],"speech.js":[function(require,module,exports) {
 "use strict";
 
 var _colors = require("./modules/colors");
@@ -322,7 +335,7 @@ var colorsEl = document.querySelector('.colors');
 
 function displayColors(colors) {
   return colors.map(function (color) {
-    return "<span class=\"color ".concat((0, _colors.isDark)(color) ? 'dark' : '', "\" style=\"background: ").concat(color, ";\">").concat(color, "</span>");
+    return "<span class=\"color ".concat((0, _colors.isDark)(color) ? 'dark' : '', "\" id=\"").concat(color, "\" style=\"background: ").concat(color, ";\">").concat(color, "</span>");
   }).join('');
 }
 
@@ -372,7 +385,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53063" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58182" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
