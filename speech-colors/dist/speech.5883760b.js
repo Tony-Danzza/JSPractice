@@ -299,9 +299,11 @@ exports.handleResult = handleResult;
 function logWords(results) {
   console.log(results[results.length - 1][0].transcript);
 }
-function handleResult(e) {
-  logWords(e.results);
-  console.log(e);
+function handleResult(_ref) {
+  var results = _ref.results;
+  logWords(results);
+  var words = results[results.length - 1][0].transcript;
+  console.log(words);
 }
 },{}],"speech.js":[function(require,module,exports) {
 "use strict";
@@ -320,7 +322,7 @@ var colorsEl = document.querySelector('.colors');
 
 function displayColors(colors) {
   return colors.map(function (color) {
-    return "<span class=\"color ".concat(color, "\" style=\"background: ").concat(color, ";\">").concat(color, "</span>");
+    return "<span class=\"color ".concat((0, _colors.isDark)(color) ? 'dark' : '', "\" style=\"background: ").concat(color, ";\">").concat(color, "</span>");
   }).join('');
 }
 
@@ -340,12 +342,10 @@ function start() {
   recognition.start();
   console.log(recognition);
 }
-_colors.colorsByLength.map(function (color) {
-  return console.log(color);
-});
 
-// start()
+// colorsByLength.map((color) => console.log(color))
 
+start();
 colorsEl.innerHTML = displayColors(_colors.colorsByLength);
 },{"./modules/colors":"modules/colors.js","./modules/handlers":"modules/handlers.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

@@ -1,4 +1,4 @@
-import { colorsByLength } from './modules/colors'
+import { colorsByLength, isDark } from './modules/colors'
 import { handleResult } from './modules/handlers'
 
 const colorsEl = document.querySelector('.colors')
@@ -15,7 +15,7 @@ function displayColors(colors) {
 	return colors
 		.map(
 			(color) =>
-				`<span class="color ${color}" style="background: ${color};">${color}</span>`
+				`<span class="color ${isDark(color) ? 'dark' : ''}" style="background: ${color};">${color}</span>`
 		)
 		.join('')
 }
@@ -43,8 +43,8 @@ function start() {
 	console.log(recognition)
 }
 
-colorsByLength.map((color) => console.log(color))
+// colorsByLength.map((color) => console.log(color))
 
-// start()
+start()
 
 colorsEl.innerHTML = displayColors(colorsByLength)

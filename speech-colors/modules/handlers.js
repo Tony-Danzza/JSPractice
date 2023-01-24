@@ -1,8 +1,9 @@
 function logWords(results) {
-    console.log(results[results.length - 1][0].transcript)
+	console.log(results[results.length - 1][0].transcript)
 }
 
-export function handleResult(e) {
-    logWords(e.results)
-    console.log(e);
+export function handleResult({ results }) {
+	logWords(results)
+	const words = results[results.length - 1][0].transcript
+    console.log(words)
 }
