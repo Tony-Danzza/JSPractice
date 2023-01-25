@@ -41,3 +41,4 @@ Thumbs.db
 
 config.js
 .gitignore
+node_modules
