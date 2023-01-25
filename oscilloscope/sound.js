@@ -5,7 +5,10 @@ const canvas = document.querySelector('canvas')
 
 const ctx = canvas.getContext('2d')
 
-canvas.width, (canvas.height = [WIDTH, HEIGHT])
+canvas.width = WIDTH
+canvas.height = HEIGHT
+
+// console.log(canvas.height)
 
 let analyzer
 
@@ -28,7 +31,8 @@ async function getAudio() {
 	const timeData = new Uint8Array(analyzer.frequencyBinCount) //NOTE: 'UintxArray' for large amount data.
 	const frequencyData = new Uint8Array(analyzer.frequencyBinCount)
 
-	drawTimeData(timeData)
+    drawTimeData(timeData)
+    drawFrequency(frequencyData)
 	console.log(frequencyData)
 }
 
@@ -36,6 +40,7 @@ function drawTimeData(timeData) {
 	analyzer.getByteTimeDomainData(timeData) //NOTE: this is where were insert timeData data into timeData
 	// console.log(timeData)
 
+	ctx.clearRect(0, 0, WIDTH, HEIGHT) //NOTE: clear canvas before each operation
 	ctx.lineWidth = 10
 	ctx.strokeStyle = '#ffe500'
 	ctx.beginPath()
@@ -46,8 +51,46 @@ function drawTimeData(timeData) {
 
 	timeData.forEach((data, i) => {
 		const v = data / 128
+		const y = (v * HEIGHT) / 2
+		if (i === 0) {
+			ctx.moveTo(x, y)
+		} else {
+			ctx.lineTo(x, y)
+		}
+		x += sliceWidth
 	})
+	ctx.stroke()
 	requestAnimationFrame(() => drawTimeData(timeData))
 }
 
-getAudio().catch(handleError)
+
+function drawFrequency(frequencyData) {
+    analyzer.getByteFrequencyData(frequencyData)
+
+    const barWidth = (WIDTH / bufferLength) * 2.5
+
+    let x = 0
+
+    frequencyData.forEach((amount) => {
+        const percent = amount / 255
+        const barHeight = (HEIGHT * percent) / 2
+
+        // CONVERT colot to HSL TODO:
+        ctx.fillStyle = 'red'
+        ctx.fillRect(
+            x,
+            HEIGHT - barHeight,
+            barWidth,
+            barHeight,
+            x += barWidth + 5
+        )
+
+
+    })
+
+    console.log(frequencyData);
+
+    requestAnimationFrame(()=> {drawFrequency(frequencyData)})
+    
+}
+getAudio()

@@ -128,7 +128,11 @@ var WIDTH = 1500,
 // console.log(height, width);
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d');
-canvas.width, canvas.height = [WIDTH, HEIGHT];
+canvas.width = WIDTH;
+canvas.height = HEIGHT;
+
+// console.log(canvas.height)
+
 var analyzer;
 var bufferLength;
 function handleError(err) {
@@ -160,8 +164,9 @@ function _getAudio() {
           timeData = new Uint8Array(analyzer.frequencyBinCount); //NOTE: 'UintxArray' for large amount data.
           frequencyData = new Uint8Array(analyzer.frequencyBinCount);
           drawTimeData(timeData);
+          drawFrequency(frequencyData);
           console.log(frequencyData);
-        case 13:
+        case 14:
         case "end":
           return _context.stop();
       }
@@ -173,6 +178,7 @@ function drawTimeData(timeData) {
   analyzer.getByteTimeDomainData(timeData); //NOTE: this is where were insert timeData data into timeData
   // console.log(timeData)
 
+  ctx.clearRect(0, 0, WIDTH, HEIGHT); //NOTE: clear canvas before each operation
   ctx.lineWidth = 10;
   ctx.strokeStyle = '#ffe500';
   ctx.beginPath();
@@ -180,12 +186,37 @@ function drawTimeData(timeData) {
   var x = 0;
   timeData.forEach(function (data, i) {
     var v = data / 128;
+    var y = v * HEIGHT / 2;
+    if (i === 0) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+    x += sliceWidth;
   });
+  ctx.stroke();
   requestAnimationFrame(function () {
     return drawTimeData(timeData);
   });
 }
-getAudio().catch(handleError);
+function drawFrequency(frequencyData) {
+  analyzer.getByteFrequencyData(frequencyData);
+  var barWidth = WIDTH / bufferLength * 2.5;
+  var x = 0;
+  frequencyData.forEach(function (amount) {
+    var percent = amount / 255;
+    var barHeight = HEIGHT * percent / 2;
+
+    // CONVERT colot to HSL TODO:
+    ctx.fillStyle = 'red';
+    ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight, x += barWidth + 5);
+  });
+  console.log(frequencyData);
+  requestAnimationFrame(function () {
+    drawFrequency(frequencyData);
+  });
+}
+getAudio();
 },{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
