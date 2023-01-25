@@ -1,5 +1,7 @@
-const [WIDTH, HEIGHT] = [1500, 1500]
+import { hslToRgb } from "./utlils"
 
+const [WIDTH, HEIGHT] = [1500, 1500]
+const FPS = 30
 // console.log(height, width);
 const canvas = document.querySelector('canvas')
 
@@ -33,7 +35,7 @@ async function getAudio() {
 
     drawTimeData(timeData)
     drawFrequency(frequencyData)
-	console.log(frequencyData)
+	// console.log(frequencyData)
 }
 
 function drawTimeData(timeData) {
@@ -64,6 +66,8 @@ function drawTimeData(timeData) {
 }
 
 
+
+
 function drawFrequency(frequencyData) {
     analyzer.getByteFrequencyData(frequencyData)
 
@@ -73,10 +77,16 @@ function drawFrequency(frequencyData) {
 
     frequencyData.forEach((amount) => {
         const percent = amount / 255
+        const [h, s, l] = [(360 / (percent * 360)),0.5, 0.75]
         const barHeight = (HEIGHT * percent) / 2
+        // console.log(h,s,l)
 
-        // CONVERT colot to HSL TODO:
-        ctx.fillStyle = 'red'
+        // ctx.fillStyle = `rgba(0,145,225,0.6)`
+
+        const [r,g,b] = hslToRgb(h,s,l)
+        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`
+        
+
         ctx.fillRect(
             x,
             HEIGHT - barHeight,
@@ -88,7 +98,10 @@ function drawFrequency(frequencyData) {
 
     })
 
-    console.log(frequencyData);
+    // console.log(frequencyData);
+    // setTimeout(() => {
+    //     requestAnimationFrame(drawFrequency(frequencyData))
+    // }, 500)
 
     requestAnimationFrame(()=> {drawFrequency(frequencyData)})
     
