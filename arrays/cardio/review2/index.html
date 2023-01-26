@@ -210,22 +210,62 @@
     console.log(toppings)
 
     // Do the last four,but immutable (with spreads and new variables)
-    
+
+    let topping1 = toppings.slice(0, (toppings.length - 1))
+    console.log(topping1)
+
+    topping1 = [...topping1, toppings[toppings.length - 1]]
+    console.log(topping1)
+
+    // console.log(toppings[0])
+    let firstTop = toppings.slice(1, (toppings.length))
+    console.log("🍕",firstTop)
+
+    firstTop = [toppings[0],...firstTop]
+    console.log(firstTop)
 
 
     // Make a copy of the toppings array with slice()
+    let copy1 = toppings.slice(0, toppings.length)
     // Make a copy of the toppings array with a spread
+    const copy2 = [...toppings]
+    console.log(`FIrst ${copy1} \n second ${copy2}`)
+
     // take out items 3 to 5 of your new toppings array with splice()
+    const someTop = copy1.splice(2,3) 
+    console.log(someTop)
     // find the index of Avocado with indexOf() / lastIndexOf()
+    console.log(copy1.indexOf("Avocado"))
+    console.log(copy2.indexOf("Avocado"))
+
+    console.log(copy1.lastIndexOf('Avocado'))
+    console.log(copy2.lastIndexOf('Avocado'))
+    
     // Check if hot sauce is in the toppings with includes()
+    toppings.includes('hot sauce')
+    function addTopping(input, arr=[]) {
+        if(arr.includes(input) == false){
+            console.log("adding", input)
+            arr.push(input)
+            return arr
+        }
+        return `The value ${input} is already in ${arr}`
+        
+    }
+    console.log(toppings.includes('hot sauce'))
     // add it if it's not
     // flip those toppings around with reverse()
+    console.log(copy1.reverse())
+    // const revCopy = copy2.reverse()
+    // console.log(revCopy)
+    console.log(copy2.reverse())
 
     /*
       Callback Methods
     */
 
     // find the first rating that talks about a burger with find()
+    ra
     // find all ratings that are above 2 with filter()
     // find all ratings that talk about a burger with filter()
     // Remove the one star rating however you like!
