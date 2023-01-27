@@ -323,9 +323,50 @@
     // make sure we have at least 3 of every meat with every()
     const everyMeat = Object.values(meats).some(meatValue => meatValue >= 3)
     console.log("is there enough of every meat", everyMeat)
+
+    console.log("ALPHABETICAL----------------------------------------------------")
+
+    
     // sort the toppings alphabetically with sort()
+    
+    const sortedTop = toppings.sort()
+    console.log(sortedTop)
+
     // sort the order totals from most expensive to least with .sort()
+    // const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+    
+
+    
+
+    const srtedOrd = orderTotals.sort((total1, total2)=>{
+        // console.log(total1, total2)
+        if(total1 >= total2){
+            return total1
+        }
+    })
+    console.log("here are my sorted orders!", srtedOrd)
+
+
+
     // Sort the prices with sort()
+    // const prices = {
+    //   hotDog: 453,
+    //   burger: 765,
+    //   sausage: 634,
+    //   corn: 234,
+    // };
+
+    const sortedPrices = Object.values(prices).sort((price1, price2)=>{
+        if(price1 >= price2){
+            return price1
+        }
+    })
+
+    
+    console.log(sortedPrices)
+        
+
+
 
     /*
       Looping Methods (next)
