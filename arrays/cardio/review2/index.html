@@ -260,18 +260,69 @@
     // console.log(revCopy)
     console.log(copy2.reverse())
 
+
+    console.log("STARTING CALLBACKS ------------------------------------------------------------------")
     /*
       Callback Methods
     */
 
     // find the first rating that talks about a burger with find()
-    ra
-    // find all ratings that are above 2 with filter()
-    // find all ratings that talk about a burger with filter()
-    // Remove the one star rating however you like!
+    
+    // const burgRating = feedback.find((rating) =>{
+    //     // console.log(rating.comment.includes('burger'))
+    //     return rating.comment.includes('burg')
+    // })
 
+    const burgRating = feedback.find(rating => rating.comment.includes('burg'))
+    console.log(burgRating)
+
+    // find all ratings that are above 2 with filter()
+    const aboveTwo = feedback.filter(item => item.rating > 2)
+    console.log(aboveTwo)
+
+    function filterRating(rating) {
+        return function (feedRating) {
+            return feedRating.rating >= rating
+        }
+    }
+
+    const above4 = feedback.filter(filterRating(4))
+    console.log(above4)
+    const above1 = feedback.filter(filterRating(1))
+    console.log(above1)
+    
+    // find all ratings that talk about a burger with filter()
+
+    const burgerTalk = feedback.filter(items => items.comment.includes('burg' || 'BURG'))
+    console.log(burgerTalk)
+
+    function findWord(word) {
+        return function (singleFeed) {
+            return singleFeed.comment.includes(word)
+        }
+    }
+
+    const burgWord = feedback.filter(findWord('burg'))
+    console.log(burgWord)
+    
+    
+    // Remove the one star rating however you like!
+    const star = feedback.find(item => item.rating === 1)
+    const legitRating = feedback.filter(item => item.rating !== 1)
+
+    console.log("LEGIT",legitRating)
+
+    console.log(star)
+    console.log(feedback)
     // check if there is at least 5 of one type of meat with some()
+
+    const enoughMeat = Object.values(meats).some(meatValue => meatValue >= 5)
+    console.log("Arby's we have the meats", enoughMeat)
+    
+    
     // make sure we have at least 3 of every meat with every()
+    const everyMeat = Object.values(meats).some(meatValue => meatValue >= 3)
+    console.log("is there enough of every meat", everyMeat)
     // sort the toppings alphabetically with sort()
     // sort the order totals from most expensive to least with .sort()
     // Sort the prices with sort()
